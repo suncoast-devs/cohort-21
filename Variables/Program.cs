@@ -24,13 +24,20 @@ namespace Variables
 
             // The variable greeting will be the contents of the HARD CODED string
             // immediately followed by whatever is in the variable named "name"
-            var greeting = "It is a pleasure to meet you, " + name;
+            var greeting = $"It is a pleasure to meet you, {name}. Please enjoy our program";
             Console.WriteLine(greeting);
 
-            Console.WriteLine("It is a pleasure to meet you, " + name);
+            Console.WriteLine($"It is a pleasure to meet you, {name}. Please enjoy our program");
 
+            Console.Write("What is your score? ");
+            var scoreAsString = Console.ReadLine();
+            var score = double.Parse(scoreAsString);
 
-            var score = 42;
+            var doubleThatScore = score * 2;
+
+            Console.WriteLine($"Your score doubled is {doubleThatScore}. Congrats!");
+
+            // var score = 42;
 
             var school = "SDG";
 
