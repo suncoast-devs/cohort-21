@@ -29,6 +29,17 @@ namespace Variables
             var sentence = "The quick brown fox jumped over the lazy dog";
             var howLong = sentence.Length;
 
+            score = score + 1;
+
+            score = score * 2;
+
+            score = score / 4;
+
+            score = score - 10;
+
+            score = (score + 1) * 2;
+
+            score = 2 * (score + 1);
 
         }
     }
