@@ -8,9 +8,13 @@ namespace Variables
         {
             Console.WriteLine("Welcome to C#");
 
-            string name = "Samantha";
+            var name = "Samantha";
 
-            int score = 42;
+            var score = 42;
+
+            var school = "SDG";
+
+            var numberOfStudents = 11;
         }
     }
 }
