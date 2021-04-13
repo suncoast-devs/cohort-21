@@ -15,11 +15,15 @@ namespace Variables
 
             Console.Write("What is your name? ");
 
+
             // This "HARD CODES" the value for name
             // var name = "Samantha";
 
             // Instead, lets read the value for the name variable from the console!
             var name = Console.ReadLine();
+
+            Console.Write("It is a pleasure to meet you, ");
+            Console.WriteLine(name);
 
             var score = 42;
 
