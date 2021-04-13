@@ -22,8 +22,10 @@ namespace Variables
             // Instead, lets read the value for the name variable from the console!
             var name = Console.ReadLine();
 
-            Console.Write("It is a pleasure to meet you, ");
-            Console.WriteLine(name);
+            // The variable greeting will be the contents of the HARD CODED string
+            // immediately followed by whatever is in the variable named "name"
+            var greeting = "It is a pleasure to meet you, " + name;
+            Console.WriteLine(greeting);
 
             var score = 42;
 
