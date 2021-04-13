@@ -27,6 +27,9 @@ namespace Variables
             var greeting = "It is a pleasure to meet you, " + name;
             Console.WriteLine(greeting);
 
+            Console.WriteLine("It is a pleasure to meet you, " + name);
+
+
             var score = 42;
 
             var school = "SDG";
