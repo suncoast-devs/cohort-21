@@ -2,11 +2,15 @@
 
 namespace Variables
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      Console.WriteLine("Welcome to C#");
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to C#");
+
+            string name = "Samantha";
+
+            int score = 42;
+        }
     }
-  }
 }
