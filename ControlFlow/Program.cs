@@ -17,6 +17,25 @@ namespace ControlFlow
             {
                 Console.WriteLine($"It is nice to meet you, {userName}!");
             }
+
+
+            if (userName == "Paul")
+            {
+                Console.WriteLine("Here");
+            }
+            else if (userName == "Dorothy")
+            {
+                Console.WriteLine("Also here");
+            }
+            else if (userName == "Sam")
+            {
+                Console.WriteLine("Here again");
+            }
+            else
+            {
+                Console.WriteLine("Didn't find anything");
+            }
+
         }
     }
 }
