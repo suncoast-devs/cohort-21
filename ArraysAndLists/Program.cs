@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ArraysAndLists
 {
@@ -27,6 +28,41 @@ namespace ArraysAndLists
             // Just like strings have a length, so do arrays!
             var nameCount = names.Length;
             Console.WriteLine($"Our array has {nameCount} elements");
+
+            Console.WriteLine("-----------------");
+
+            //
+            //              Making a new List
+            //              |
+            //              |    ... of strings
+            //              |    |
+            //              |    |          Start of initial list of strings
+            //              |    |          |
+            //              |    |          |       Values
+            //              |    |          |       |
+            //              |    |          |       |                 End of list
+            //              |    |          |       |                           |
+            //              |    |          |       |                           |
+            //              v    |          v       v                           v
+            var namesList = new List<string>() { "Mark", "Paula", "Sandy", "Bill" };
+
+            var firstNameFromList = namesList[0];
+            var secondNameFromList = namesList[1];
+
+            Console.WriteLine(firstNameFromList);
+
+            // Get the number of names in the list
+            var nameCountFromList = namesList.Count;
+
+            Console.WriteLine($"There are {nameCountFromList} elements in our List");
+
+            // Add a new element to the list
+            namesList.Add("George");
+
+            var newNameCountFromListAfterGeorge = namesList.Count;
+
+            Console.WriteLine($"There are now {newNameCountFromListAfterGeorge} elements in our List");
+
         }
     }
 }
