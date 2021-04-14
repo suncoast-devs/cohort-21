@@ -10,9 +10,16 @@ namespace ControlFlow
             Console.Write("What is your name? [type quit to stop]? ");
             var name = Console.ReadLine();
 
-            while (name != "quit")
+            while (name.ToLower() != "quit")
             {
-                Console.WriteLine($"Nice to see you {name}");
+                if (name == "Alice")
+                {
+                    Console.WriteLine("Wow, it is alice!");
+                }
+                else
+                {
+                    Console.WriteLine($"It is nice to meet you, {name}!");
+                }
 
                 Console.Write("What is your name? [type quit to stop]? ");
                 name = Console.ReadLine();
