@@ -56,11 +56,7 @@ namespace EmployeeDatabaseWithMethods
 
         static int PromptForInteger(string prompt)
         {
-            // Print the requested prompt (in the "prompt" variable)
-            Console.Write(prompt);
-
-            // Get answer (string) from the user
-            var answer = Console.ReadLine();
+            var answer = PromptForString(prompt);
 
             var answerAsInteger = int.Parse(answer);
 
