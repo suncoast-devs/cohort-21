@@ -48,6 +48,11 @@ namespace AllCardsOnDeck
                 deck[leftIndex] = rightCard;
             }
 
+            var firstCard = deck[0];
+            var secondCard = deck[1];
+
+            Console.WriteLine(firstCard);
+            Console.WriteLine(secondCard);
         }
     }
 }
