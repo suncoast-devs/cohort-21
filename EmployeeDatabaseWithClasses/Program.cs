@@ -68,7 +68,20 @@ namespace EmployeeDatabaseWithMethods
         public string Name { get; set; }
         public int Department { get; set; }
         public int Salary { get; set; }
-        public int MonthlySalary { get; set; }
+
+        // This really isn't a property, it is a BEHAVIOR
+        // public int MonthlySalary { get; set; }
+
+        // Name    - MonthlySalary
+        // Input   - (none) 
+        // Work    - Divide Salary by 12
+        // Output  - integer, the monthly salary computation
+        public int MonthlySalary()
+        {
+            var computedMonthlySalary = Salary / 12;
+
+            return computedMonthlySalary;
+        }
     }
 
 
@@ -159,15 +172,13 @@ namespace EmployeeDatabaseWithMethods
                 Name = name,
                 Department = department,
                 Salary = salary,
-                MonthlySalary = salaryPerMonth,
             };
 
-            Console.WriteLine($"You pay {newEmployee.Name} the sum of {newEmployee.MonthlySalary} per month");
+            Console.WriteLine($"You pay {newEmployee.Name} the sum of {newEmployee.MonthlySalary()} per month");
 
             newEmployee.Salary = newEmployee.Salary * 2;
-            newEmployee.MonthlySalary = newEmployee.MonthlySalary * 2;
 
-            Console.WriteLine($"You pay {newEmployee.Name} the sum of {newEmployee.MonthlySalary} per month");
+            Console.WriteLine($"You pay {newEmployee.Name} the sum of {newEmployee.MonthlySalary()} per month");
 
             // var graceHopper = new Employee()
             // {
