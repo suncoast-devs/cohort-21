@@ -58,9 +58,18 @@ namespace EmployeeDatabaseWithMethods
         {
             var answer = PromptForString(prompt);
 
-            var answerAsInteger = int.Parse(answer);
+            int answerAsInteger;
 
-            return answerAsInteger;
+            var isThisGoodInput = int.TryParse(answer, out answerAsInteger);
+            if (isThisGoodInput)
+            {
+                return answerAsInteger;
+            }
+            else
+            {
+                Console.WriteLine("That isn't good input. I'm using 0 as your answer.");
+                return 0;
+            }
         }
 
         static void Main(string[] args)
