@@ -23,9 +23,31 @@ namespace AllCardsOnDeck
                     var card = $"The {rank} of {suit}";
                     //           add that string to our deck of cards list
                     deck.Add(card);
-                    Console.WriteLine(card);
                 }
             }
+
+
+            // numberOfCards = length of our deck
+            var numberOfCards = deck.Count;
+
+            // for rightIndex from numberOfCards - 1 down to 1 do:
+            for (var rightIndex = numberOfCards - 1; rightIndex >= 1; rightIndex--)
+            {
+                //   leftIndex = random integer that is greater than or equal to 0 and LESS than rightIndex. See the section "How do we get a random integer")
+                var randomNumberGenerator = new Random();
+                var leftIndex = randomNumberGenerator.Next(rightIndex);
+
+                //   Now swap the values at rightIndex and leftIndex by doing this:
+                //     leftCard = the value from deck[leftIndex]
+                var leftCard = deck[leftIndex];
+                //     rightCard = the value from deck[rightIndex]
+                var rightCard = deck[rightIndex];
+                //     deck[rightIndex] = leftCard
+                deck[rightIndex] = leftCard;
+                //     deck[leftIndex] = rightCard
+                deck[leftIndex] = rightCard;
+            }
+
         }
     }
 }
