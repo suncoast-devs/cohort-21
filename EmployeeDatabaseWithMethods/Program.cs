@@ -30,12 +30,35 @@ namespace EmployeeDatabaseWithMethods
             Console.WriteLine();
         }
 
+        // static method (ignore this for the moment)
+        //  |
+        //  |  The return (output) type. This says that
+        //  |  we expect this method to return a single
+        //  |  string to the code that called it
+        //  |   |
+        //  |   |               The inputs, known as arguments.
+        //  |   |               In this case a single string
+        //  |   |               in a variable known as `prompt`
+        //  |   |                      |
+        //  |   |                      |
+        //  v   v                      v
+        static string PromptForString(string prompt)
+        {
+            // Print the requested prompt (in the "prompt" variable)
+            Console.Write(prompt);
+
+            // Get answer (string) from the user
+            var answer = Console.ReadLine();
+
+            // RETURN THE ANSWER
+            return answer;
+        }
+
         static void Main(string[] args)
         {
             DisplayGreeting();
 
-            Console.Write("What is your name? ");
-            var name = Console.ReadLine();
+            var name = PromptForString("What is your name? ");
 
             Console.Write("What is your department number? ");
             var department = int.Parse(Console.ReadLine());
