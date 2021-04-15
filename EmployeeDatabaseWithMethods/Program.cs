@@ -54,17 +54,28 @@ namespace EmployeeDatabaseWithMethods
             return answer;
         }
 
+        static int PromptForInteger(string prompt)
+        {
+            // Print the requested prompt (in the "prompt" variable)
+            Console.Write(prompt);
+
+            // Get answer (string) from the user
+            var answer = Console.ReadLine();
+
+            var answerAsInteger = int.Parse(answer);
+
+            return answerAsInteger;
+        }
+
         static void Main(string[] args)
         {
             DisplayGreeting();
 
             var name = PromptForString("What is your name? ");
 
-            Console.Write("What is your department number? ");
-            var department = int.Parse(Console.ReadLine());
+            var department = PromptForInteger("What is your department number? ");
 
-            Console.Write("What is your yearly salary (in dollars)? ");
-            var salary = int.Parse(Console.ReadLine());
+            var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
             var salaryPerMonth = salary / 12;
             Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
