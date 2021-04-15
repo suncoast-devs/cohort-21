@@ -13,10 +13,19 @@ namespace AllCardsOnDeck
             var ranks = new List<string>() { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
 
             // Go through each suit, Clubs, Diamonds, Hearts, and Spaces, one at a time
-            //     For each suit do the following
-            //        Go through all the ranks, Ace, 2, 3, 4, etc.
-            //           For each combination of suit and rank, make a new string
-            //           add that string to our deck of cards list
+            foreach (var suit in suits)
+            {
+                //     For each suit do the following
+                //        Go through all the ranks, Ace, 2, 3, 4, etc.
+                foreach (var rank in ranks)
+                {
+                    //           For each combination of suit and rank, make a new string
+                    var card = $"The {rank} of {suit}";
+                    //           add that string to our deck of cards list
+                    deck.Add(card);
+                    Console.WriteLine(card);
+                }
+            }
         }
     }
 }
