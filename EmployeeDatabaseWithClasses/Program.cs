@@ -146,34 +146,47 @@ namespace EmployeeDatabaseWithMethods
         {
             // DisplayGreeting();
 
-            // var name = PromptForString("What is your name? ");
+            var name = PromptForString("What is your name? ");
 
-            // var department = PromptForInteger("What is your department number? ");
+            var department = PromptForInteger("What is your department number? ");
 
-            // var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+            var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
-            // var salaryPerMonth = salary / 12;
-            // Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
+            var salaryPerMonth = salary / 12;
 
-
-            var graceHopper = new Employee()
+            var newEmployee = new Employee()
             {
-                Department = 100,
-                Salary = 240000,
-                MonthlySalary = 20000,
-                Name = "Grace Hopper",
+                Name = name,
+                Department = department,
+                Salary = salary,
+                MonthlySalary = salaryPerMonth,
             };
 
-            var elonMusk = new Employee()
-            {
-                Salary = 120000,
-                Name = "Elon Musk",
-                Department = 42,
-                MonthlySalary = 10000,
-            };
+            Console.WriteLine($"You pay {newEmployee.Name} the sum of {newEmployee.MonthlySalary} per month");
 
-            Console.WriteLine(graceHopper.Department);
-            Console.WriteLine(elonMusk.Department);
+            newEmployee.Salary = newEmployee.Salary * 2;
+            newEmployee.MonthlySalary = newEmployee.MonthlySalary * 2;
+
+            Console.WriteLine($"You pay {newEmployee.Name} the sum of {newEmployee.MonthlySalary} per month");
+
+            // var graceHopper = new Employee()
+            // {
+            //     Department = 100,
+            //     Salary = 240000,
+            //     MonthlySalary = 20000,
+            //     Name = "Grace Hopper",
+            // };
+
+            // var elonMusk = new Employee();
+            // // {
+            // //     Salary = 120000,
+            // //     Name = "Elon Musk",
+            // //     Department = 42,
+            // //     MonthlySalary = 10000,
+            // // };
+
+            // Console.WriteLine(graceHopper.Department);
+            // Console.WriteLine(elonMusk.Department);
         }
     }
 
