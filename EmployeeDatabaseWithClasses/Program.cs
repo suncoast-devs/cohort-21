@@ -2,6 +2,53 @@
 
 namespace EmployeeDatabaseWithMethods
 {
+    // This is where new classes go! 
+    //
+    // class keyword
+    // |
+    // |    Name of class (PascalCase)
+    // |    |
+    // v    v
+    class Employee
+    {
+        // public means "this can be seen outside of the class
+        // |
+        // |   Type
+        // |   |
+        // |   |      Name of property
+        // |   |      |
+        // |   |      |
+        // |   |      |
+        // v   v      v
+        public string Name;
+        public int Department;
+        public int Salary;
+        public int MonthlySalary;
+
+        // This is a *special* method known as a "constructor"
+        // The constructor is called when we write a line like: `var bob = new Employee(`
+        // The arguments to the method should line up to those below
+        //
+        //              This will become the employee's name
+        //              |               This will become the employee's department
+        //              |               |                  This will become the employee's salary
+        //              |               |                  |              This will become the employee's monthly salary
+        //              |               |                  |              |
+        //              v               v                  v              v
+        public Employee(string newName, int newDepartment, int newSalary, int newMonthlySalary)
+        {
+            // In the constructor we should setup the values for any of the properties.
+            // Here we will *copy* the values given by the arguments to the corresponding property.
+
+            Name = newName;
+            Department = newDepartment;
+            Salary = newSalary;
+            MonthlySalary = newSalary;
+        }
+    }
+
+
+
     class Program
     {
         // This is where our new method goes!
@@ -74,16 +121,24 @@ namespace EmployeeDatabaseWithMethods
 
         static void Main(string[] args)
         {
-            DisplayGreeting();
+            // DisplayGreeting();
 
-            var name = PromptForString("What is your name? ");
+            // var name = PromptForString("What is your name? ");
 
-            var department = PromptForInteger("What is your department number? ");
+            // var department = PromptForInteger("What is your department number? ");
 
-            var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+            // var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
-            var salaryPerMonth = salary / 12;
-            Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
+            // var salaryPerMonth = salary / 12;
+            // Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
+
+
+            var graceHopper = new Employee("Grace Hopper", 100, 240000, 20000);
+
+            var elonMusk = new Employee("Elon Musk", 42, 120000, 10000);
+
+            Console.WriteLine(graceHopper.Department);
+            Console.WriteLine(elonMusk.Department);
         }
     }
 
