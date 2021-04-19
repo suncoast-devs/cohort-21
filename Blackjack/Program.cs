@@ -152,9 +152,9 @@ namespace Blackjack
         }
     }
 
-    class Program
+    class Game
     {
-        static void Main(string[] args)
+        public void Play()
         {
             // 1.  Create a new deck
             //     PEDAC ^^^^ - Properties: A list of 52 cards
@@ -326,6 +326,32 @@ namespace Blackjack
                 Console.WriteLine("Ties to to the dealer");
             }
 
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var playerWantsToKeepGoing = true;
+
+            while (playerWantsToKeepGoing)
+            {
+                var theGame = new Game();
+                theGame.Play();
+
+                Console.Write("Want more? [Y]/[N] ");
+                var answer = Console.ReadLine().ToLower();
+
+                if (answer == "y")
+                {
+                    playerWantsToKeepGoing = true;
+                }
+                else
+                {
+                    playerWantsToKeepGoing = false;
+                }
+            }
         }
     }
 }
