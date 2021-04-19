@@ -239,21 +239,41 @@ namespace Blackjack
 
             dealerHand.Receive(newCard);
 
-            // 9.  Show the player the cards in their hand and the TotalValue of their Hand
-            Console.WriteLine("Your cards are:");
-            foreach (var card in playerHand.IndividualCards)
-            {
-                Console.WriteLine(card.Description());
-            }
-            Console.Write("Your total hand value is: ");
-            Console.WriteLine(playerHand.TotalValue());
 
             // 10. If they have BUSTED, then goto step 15
-            // 11. Ask the player if they want to HIT or STAND
-            // 12. If HIT
-            //     - Ask the deck for a card and place it in the player hand, repeat step 10
-            // 13. If STAND continue on
+            var keepAsking = true;
+            while (keepAsking == true && playerHand.TotalValue() <= 21)
+            {
+                // 9.  Show the player the cards in their hand and the TotalValue of their Hand
+                Console.WriteLine("Your cards are:");
+                foreach (var card in playerHand.IndividualCards)
+                {
+                    Console.WriteLine(card.Description());
+                }
+                Console.Write("Your total hand value is: ");
+                Console.WriteLine(playerHand.TotalValue());
+
+                // 11. Ask the player if they want to HIT or STAND
+                Console.Write("Do you want to [H]it or [S]tand? ");
+                var choice = Console.ReadLine().ToLower();
+
+                // 12. If HIT
+                if (choice == "h")
+                {
+                    //     - Ask the deck for a card and place it in the player hand, repeat step 10
+                    var hitCard = deck[0];
+                    deck.Remove(hitCard);
+
+                    playerHand.Receive(hitCard);
+                }
+                else
+                {
+                    // 13. If STAND continue on
+                    keepAsking = false;
+                }
+            }
             // 14. If the dealer has busted then goto step 17
+
             // 15. If the dealer has less than 17
             //     - Add a card to the dealer hand and go back to 14
             // 16. Show the dealer's hand TotalValue
