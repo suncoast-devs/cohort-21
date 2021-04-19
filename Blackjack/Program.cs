@@ -19,7 +19,7 @@ namespace Blackjack
         //   Input     new card
         //   Work      -- can't auto generate this!
         //   Output    void (nothing)
-        public void Add(Card newCard)
+        public void Receive(Card newCard)
         {
             // Add this card to the hand
             IndividualCards.Add(newCard);
@@ -128,7 +128,7 @@ namespace Blackjack
             Console.WriteLine(newCard.Description());
 
             // 5b and place it in the player hand
-            playerHand.Add(newCard);
+            playerHand.Receive(newCard);
 
             var playerHandCards = playerHand.IndividualCards;
             foreach (var card in playerHandCards)
