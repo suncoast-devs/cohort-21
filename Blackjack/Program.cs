@@ -24,6 +24,20 @@ namespace Blackjack
             // Add this card to the hand
             IndividualCards.Add(newCard);
         }
+
+        //     - TotalValue representing the sum of the individual Cards in the list.
+        //
+        //  Name        - TotalValue
+        //  Input       - None 
+        //  Work        - Somehow total up the value of the cards
+        //  Output      - The total value (int) of the cards
+        public int TotalValue()
+        {
+            // Work
+
+            return 0;
+        }
+
     }
 
     // - Card
@@ -149,6 +163,14 @@ namespace Blackjack
             dealerHand.Receive(newCard);
 
             // 9.  Show the player the cards in their hand and the TotalValue of their Hand
+            Console.WriteLine("Your cards are:");
+            foreach (var card in playerHand.IndividualCards)
+            {
+                Console.WriteLine(card.Description());
+            }
+            Console.Write("Your total hand value is: ");
+            Console.WriteLine(playerHand.TotalValue());
+
             // 10. If they have BUSTED, then goto step 15
             // 11. Ask the player if they want to HIT or STAND
             // 12. If HIT
