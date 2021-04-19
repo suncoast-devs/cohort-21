@@ -3,6 +3,29 @@ using System.Collections.Generic;
 
 namespace Blackjack
 {
+    // - Hand
+    class Hand
+    {
+        //   - Properties: A list of individual Cards
+        public List<Card> IndividualCards { get; set; } = new List<Card>();
+
+
+        //   - Behaviors:
+        //     - TotalValue representing the sum of the individual Cards in the list.
+        //     - Add a card to the hand
+
+        //
+        //   Name      Add
+        //   Input     new card
+        //   Work      -- can't auto generate this!
+        //   Output    void (nothing)
+        public void Add(Card newCard)
+        {
+            // Add this card to the hand
+            IndividualCards.Add(newCard);
+        }
+    }
+
     // - Card
     class Card
     {
@@ -93,8 +116,26 @@ namespace Blackjack
             }
 
             // 3.  Create a player hand
+            var playerHand = new Hand();
+
             // 4.  Create a dealer hand
-            // 5.  Ask the deck for a card and place it in the player hand
+            var dealerHand = new Hand();
+
+            // 5.  Ask the deck for a card 
+            var newCard = deck[0];
+            deck.Remove(newCard);
+
+            Console.WriteLine(newCard.Description());
+
+            // 5b and place it in the player hand
+            playerHand.Add(newCard);
+
+            var playerHandCards = playerHand.IndividualCards;
+            foreach (var card in playerHandCards)
+            {
+                Console.WriteLine(card.Description());
+            }
+
             // 6.  Ask the deck for a card and place it in the player hand
             // 7.  Ask the deck for a card and place it in the dealer hand
             // 8.  Ask the deck for a card and place it in the dealer hand
