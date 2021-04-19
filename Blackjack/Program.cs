@@ -125,18 +125,16 @@ namespace Blackjack
             var newCard = deck[0];
             deck.Remove(newCard);
 
-            Console.WriteLine(newCard.Description());
-
             // 5b and place it in the player hand
             playerHand.Receive(newCard);
 
-            var playerHandCards = playerHand.IndividualCards;
-            foreach (var card in playerHandCards)
-            {
-                Console.WriteLine(card.Description());
-            }
+            // 6.  Ask the deck for a card 
+            newCard = deck[0];
 
-            // 6.  Ask the deck for a card and place it in the player hand
+            // 6b. and place it in the player hand
+            playerHand.Receive(newCard);
+
+
             // 7.  Ask the deck for a card and place it in the dealer hand
             // 8.  Ask the deck for a card and place it in the dealer hand
             // 9.  Show the player the cards in their hand and the TotalValue of their Hand
