@@ -6,9 +6,22 @@ namespace Blackjack
     // - Card
     class Card
     {
-        //   - Properties: The Face of the card, the Suit of the card
+        //   - Properties: The Rank of the card, the Suit of the card
+        public string Rank { get; set; }
+        public string Suit { get; set; }
+
         //   - Behaviors:
         //     - The Value of the card according to the table in the "P"roblem part
+        //
+        //     - Name  - Value
+        //     - Input
+        //     - Work  - Figuring out the value
+        //     - Output - the value as an integer
+        public int Value()
+        {
+            // What to do here? -- the work
+            return 0;
+        }
     }
 
     class Program
