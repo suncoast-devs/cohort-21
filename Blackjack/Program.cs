@@ -130,13 +130,24 @@ namespace Blackjack
 
             // 6.  Ask the deck for a card 
             newCard = deck[0];
+            deck.Remove(newCard);
 
             // 6b. and place it in the player hand
             playerHand.Receive(newCard);
 
 
             // 7.  Ask the deck for a card and place it in the dealer hand
+            newCard = deck[0];
+            deck.Remove(newCard);
+
+            dealerHand.Receive(newCard);
+
             // 8.  Ask the deck for a card and place it in the dealer hand
+            newCard = deck[0];
+            deck.Remove(newCard);
+
+            dealerHand.Receive(newCard);
+
             // 9.  Show the player the cards in their hand and the TotalValue of their Hand
             // 10. If they have BUSTED, then goto step 15
             // 11. Ask the player if they want to HIT or STAND
