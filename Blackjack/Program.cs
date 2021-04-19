@@ -175,6 +175,7 @@ namespace Blackjack
 
             //         Make a blank list of cards
             var deck = new List<Card>();
+            // var deck = new Deck();
 
             //         Suits is a list of "Club", "Diamond", "Heart", or "Spade"
             //         Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
@@ -226,6 +227,7 @@ namespace Blackjack
             var dealerHand = new Hand();
 
             // 5.  Ask the deck for a card 
+            // var newCard = deck.Deal();
             var newCard = deck[0];
             deck.Remove(newCard);
 
