@@ -242,7 +242,7 @@ namespace Blackjack
 
             // 10. If they have BUSTED, then goto step 15
             var keepAsking = true;
-            while (keepAsking == true && playerHand.TotalValue() <= 21)
+            while (keepAsking && playerHand.TotalValue() <= 21)
             {
                 // 9.  Show the player the cards in their hand and the TotalValue of their Hand
                 Console.WriteLine("Your cards are:");
@@ -343,14 +343,15 @@ namespace Blackjack
                 Console.Write("Want more? [Y]/[N] ");
                 var answer = Console.ReadLine().ToLower();
 
-                if (answer == "y")
-                {
-                    playerWantsToKeepGoing = true;
-                }
-                else
-                {
-                    playerWantsToKeepGoing = false;
-                }
+                playerWantsToKeepGoing = (answer == "y");
+                // if (answer == "y")
+                // {
+                //     playerWantsToKeepGoing = true;
+                // }
+                // else
+                // {
+                //     playerWantsToKeepGoing = false;
+                // }
             }
         }
     }
