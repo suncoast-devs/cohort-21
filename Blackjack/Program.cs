@@ -22,6 +22,20 @@ namespace Blackjack
             // What to do here? -- the work
             return 0;
         }
+
+        //  Description behavior
+        //
+        //  Name   - Description
+        //  Input  - Nope
+        //  Work   - Generate a new string that describes this card
+        //  Output - String
+
+        public string Description()
+        {
+            var newDescriptionString = $"The {Rank} of {Suit}";
+
+            return newDescriptionString;
+        }
     }
 
     class Program
@@ -37,21 +51,26 @@ namespace Blackjack
 
             //         Suits is a list of "Club", "Diamond", "Heart", or "Spade"
             //         Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
-            //         ```
-            //         Go through all of the suits one at a time and in order
-            //         {
-            //             Get the current suit
-            //             Go through all of the faces one a time and in order
-            //             {
-            //                 Get the current face
 
-            //                 With the current suit and the current face, make a new card
-            //                 Add that card to the list of cards
-            //             Go to the card and loop again
-            //             }
-            //         Go to the next suit and loop again
-            //         }
-            //         ```
+            var suits = new List<string>() { "Clubs", "Diamonds", "Hearts", "Spades" };
+            var ranks = new List<string>() { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+
+            // Go through each suit, Clubs, Diamonds, Hearts, and Spaces, one at a time
+            foreach (var suit in suits)
+            {
+                //     For each suit do the following
+                //        Go through all the ranks, Ace, 2, 3, 4, etc.
+                foreach (var rank in ranks)
+                {
+                    //  With the current suit and the current face, make a new card
+                    var card = new Card { Suit = suit, Rank = rank };
+
+                    // Add that card to the list of cards
+                    deck.Add(card);
+                }
+            }
+
+
 
             // 2.  Ask the deck to make a new shuffled 52 cards
             // 3.  Create a player hand
