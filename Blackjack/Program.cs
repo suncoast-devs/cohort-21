@@ -33,9 +33,41 @@ namespace Blackjack
         //  Output      - The total value (int) of the cards
         public int TotalValue()
         {
-            // Work
+            // PEDAC
 
-            return 0;
+            // Problem:
+            //
+            //   We have a list of cards that know their own value and we want
+            //   a total value computed by adding the value of the first card
+            //   to the second to the third card and so on for all the cards in
+            //   the list.
+            //
+            // Example:
+            //    3 of Clubs, 5 of Diamonds, Ace of Hearts -- 3 + 5 + 11 = 19
+            //    2 of Clubs, 2 of Hearts, 2 of Diamonds -- 2 + 2 + 2 = 6
+            //    empty? no cards -- 0
+            //    Queen of Hearts -- 10
+            //
+            // Data
+            //
+            //    List
+            //    integer total
+            //    foreach loop? -- to go the cards?
+            //
+            // Algorithm
+            //   start our total at zero
+            var total = 0;
+            //   for each card in the list do the following
+            foreach (var card in IndividualCards)
+            {
+                //     add the current card value to the current total making that the new total
+                // total = card.Value() + total;
+                // total = total + card.Value();
+                total += card.Value();
+            }
+
+            //   when done, the current total is the answer
+            return total;
         }
 
     }
@@ -79,61 +111,30 @@ namespace Blackjack
             //    An if/else chain of all the faces equal to each possibility
             //    If the face/rank matches, that is the number of points (see table)
 
-            var theCardValue = 0;
-            if (Rank == "2")
+
+            switch (Rank)
             {
-                theCardValue = 2;
-            }
-            else if (Rank == "3")
-            {
-                theCardValue = 3;
-            }
-            else if (Rank == "4")
-            {
-                theCardValue = 4;
-            }
-            else if (Rank == "5")
-            {
-                theCardValue = 5;
-            }
-            else if (Rank == "6")
-            {
-                theCardValue = 6;
-            }
-            else if (Rank == "7")
-            {
-                theCardValue = 7;
-            }
-            else if (Rank == "8")
-            {
-                theCardValue = 8;
-            }
-            else if (Rank == "9")
-            {
-                theCardValue = 9;
-            }
-            else if (Rank == "10")
-            {
-                theCardValue = 10;
-            }
-            else if (Rank == "Jack")
-            {
-                theCardValue = 10;
-            }
-            else if (Rank == "Queen")
-            {
-                theCardValue = 10;
-            }
-            else if (Rank == "King")
-            {
-                theCardValue = 10;
-            }
-            else if (Rank == "Ace")
-            {
-                theCardValue = 11;
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "10":
+                    return int.Parse(Rank);
+                case "Jack":
+                case "Queen":
+                case "King":
+                    return 10;
+                case "Ace":
+                    return 11;
+                default:
+                    // Huh? What card was that?
+                    return 0;
             }
 
-            return theCardValue;
         }
 
         //  Description behavior
