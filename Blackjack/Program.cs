@@ -25,6 +25,19 @@ namespace Blackjack
             IndividualCards.Add(newCard);
         }
 
+        public bool Busted()
+        {
+            return TotalValue() > 21;
+            // if (TotalValue() > 21)
+            // {
+            //     return true;
+            // }
+            // else
+            // {
+            //     return false;
+            // }
+        }
+
         //     - TotalValue representing the sum of the individual Cards in the list.
         //
         //  Name        - TotalValue
@@ -242,7 +255,7 @@ namespace Blackjack
 
             // 10. If they have BUSTED, then goto step 15
             var keepAsking = true;
-            while (keepAsking && playerHand.TotalValue() <= 21)
+            while (keepAsking && !playerHand.Busted())
             {
                 // 9.  Show the player the cards in their hand and the TotalValue of their Hand
                 Console.WriteLine("Your cards are:");
@@ -284,7 +297,7 @@ namespace Blackjack
             // 14. If the dealer has busted then goto step 17
             // 15. If the dealer has less than 17
             //     - Add a card to the dealer hand and go back to 14
-            while (dealerHand.TotalValue() < 17 && playerHand.TotalValue() <= 21)
+            while (dealerHand.TotalValue() < 17 && !playerHand.Busted())
             {
                 var newDealerCard = deck[0];
                 deck.Remove(newDealerCard);
@@ -301,12 +314,12 @@ namespace Blackjack
             Console.Write("The dealer's total hand value is: ");
             Console.WriteLine(dealerHand.TotalValue());
 
-            if (playerHand.TotalValue() > 21)
+            if (playerHand.Busted())
             {
                 // 17. If the player busted show "DEALER WINS"
                 Console.WriteLine("Dealer wins!");
             }
-            else if (dealerHand.TotalValue() > 21)
+            else if (dealerHand.Busted())
             {
                 // 18. If the dealer busted show "PLAYER WINS"
                 Console.WriteLine("Player wins!");
