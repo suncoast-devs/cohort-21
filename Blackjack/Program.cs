@@ -272,11 +272,35 @@ namespace Blackjack
                     keepAsking = false;
                 }
             }
-            // 14. If the dealer has busted then goto step 17
 
+            Console.WriteLine("Your cards are:");
+            foreach (var card in playerHand.IndividualCards)
+            {
+                Console.WriteLine(card.Description());
+            }
+            Console.Write("Your total hand value is: ");
+            Console.WriteLine(playerHand.TotalValue());
+
+            // 14. If the dealer has busted then goto step 17
             // 15. If the dealer has less than 17
             //     - Add a card to the dealer hand and go back to 14
+            while (dealerHand.TotalValue() < 17)
+            {
+                var newDealerCard = deck[0];
+                deck.Remove(newDealerCard);
+
+                dealerHand.Receive(newDealerCard);
+            }
+
             // 16. Show the dealer's hand TotalValue
+            Console.WriteLine("The dealer's cards are:");
+            foreach (var card in dealerHand.IndividualCards)
+            {
+                Console.WriteLine(card.Description());
+            }
+            Console.Write("The dealer's total hand value is: ");
+            Console.WriteLine(dealerHand.TotalValue());
+
             // 17. If the player busted show "DEALER WINS"
             // 18. If the dealer busted show "PLAYER WINS"
             // 19. If the dealer's hand is more than the player's hand then show "DEALER WINS", else show "PLAYER WINS"
