@@ -57,7 +57,83 @@ namespace Blackjack
         public int Value()
         {
             // What to do here? -- the work
-            return 0;
+
+
+            // PEDAC
+            //
+            // Problem - If we know the RANK of a card, how do we get the card's
+            //           value in our blackjack game rules. We are given some rules
+            //           about how cards are valued. 2-10 are worth their face value
+            //           J, Q, K, are all worth 10 and ACE is worth 11.
+            //
+            // Example -
+            //
+
+            //
+            // Data
+            //
+            //    Input      -- string "Rank"
+            //    Output     -- integer number of points/value
+            //
+            // Algorithm
+            //    An if/else chain of all the faces equal to each possibility
+            //    If the face/rank matches, that is the number of points (see table)
+
+            var theCardValue = 0;
+            if (Rank == "2")
+            {
+                theCardValue = 2;
+            }
+            else if (Rank == "3")
+            {
+                theCardValue = 3;
+            }
+            else if (Rank == "4")
+            {
+                theCardValue = 4;
+            }
+            else if (Rank == "5")
+            {
+                theCardValue = 5;
+            }
+            else if (Rank == "6")
+            {
+                theCardValue = 6;
+            }
+            else if (Rank == "7")
+            {
+                theCardValue = 7;
+            }
+            else if (Rank == "8")
+            {
+                theCardValue = 8;
+            }
+            else if (Rank == "9")
+            {
+                theCardValue = 9;
+            }
+            else if (Rank == "10")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "Jack")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "Queen")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "King")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "Ace")
+            {
+                theCardValue = 11;
+            }
+
+            return theCardValue;
         }
 
         //  Description behavior
@@ -69,7 +145,7 @@ namespace Blackjack
 
         public string Description()
         {
-            var newDescriptionString = $"The {Rank} of {Suit}";
+            var newDescriptionString = $"The {Rank} of {Suit} - worth {Value()} points.";
 
             return newDescriptionString;
         }
