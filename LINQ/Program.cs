@@ -339,8 +339,22 @@ namespace LINQ
             }
 
             var popularMovies = movies.Where(movie => movie.Screenings >= 100);
+            var popularMovieNames = popularMovies.Select(movie => movie.Name);
 
-            Console.WriteLine(popularMovies.Count());
+            var popularMoviesInOneLineOfCode = movies.Where(movie => movie.Screenings >= 100).Select(movie => movie.Name);
+
+            // This is a list of revenues (doubles)
+            var allRevenues = movies.Select(movie => movie.TotalRevenue);
+
+            // Just add up all the numbers in the list
+            var totalRevenue = allRevenues.Sum();
+
+            var totalRevenueInOneLineOfCode = movies.Sum(movie => movie.TotalRevenue);
+            var totalNumberOfScreenings = movies.Sum(movie => movie.Screenings);
+
+            Console.WriteLine(totalRevenue);
+            Console.WriteLine(totalRevenueInOneLineOfCode);
+            Console.WriteLine(totalNumberOfScreenings);
         }
     }
 }
