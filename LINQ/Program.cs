@@ -331,12 +331,16 @@ namespace LINQ
             Console.WriteLine();
             Console.WriteLine();
 
-            var movieNames = movies.Select(movie => movie.Name);
+            var movieNames = movies.Select((movie, index) => $"The movie named {movie.Name} is at the position {index}");
 
             foreach (var movieName in movieNames)
             {
                 Console.WriteLine(movieName);
             }
+
+            var popularMovies = movies.Where(movie => movie.Screenings >= 100);
+
+            Console.WriteLine(popularMovies.Count());
         }
     }
 }
