@@ -324,6 +324,19 @@ namespace LINQ
                       Budget = 844331
                 },
             };
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(new String('*', 40));
+            Console.WriteLine();
+            Console.WriteLine();
+
+            var movieNames = movies.Select(movie => movie.Name);
+
+            foreach (var movieName in movieNames)
+            {
+                Console.WriteLine(movieName);
+            }
         }
     }
 }
