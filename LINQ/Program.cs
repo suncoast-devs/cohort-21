@@ -355,6 +355,20 @@ namespace LINQ
             Console.WriteLine(totalRevenue);
             Console.WriteLine(totalRevenueInOneLineOfCode);
             Console.WriteLine(totalNumberOfScreenings);
+
+
+            var favoriteMovie = movies.FirstOrDefault(movie => movie.Name == "Jaws");
+
+            // If 'favoriteMovie' is *NOT* equal to the special value 'null' meaning a missing value
+            // then there must BE a value and I can print that movie's tagline
+            if (favoriteMovie == null)
+            {
+                Console.WriteLine("No such movie found");
+            }
+            else
+            {
+                Console.WriteLine(favoriteMovie.Tagline);
+            }
         }
     }
 }
