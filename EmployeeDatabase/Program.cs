@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EmployeeDatabase
 {
@@ -50,6 +51,8 @@ namespace EmployeeDatabase
 
         static void Main(string[] args)
         {
+            var employees = new List<Employee>();
+
             var employee = new Employee();
 
             DisplayGreeting();
@@ -58,7 +61,7 @@ namespace EmployeeDatabase
             employee.Department = PromptForInteger("What is your department number? ");
             employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
-            Console.WriteLine($"Hello, {employee.Name} you make {employee.MonthlySalary()} dollars per month.");
+            employees.Add(employee);
         }
     }
 }
