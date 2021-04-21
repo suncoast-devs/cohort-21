@@ -61,13 +61,24 @@ namespace EmployeeDatabase
             {
                 // Inert a blank line then prompt them and get their answer (force uppercase)
                 Console.WriteLine();
-                Console.Write("What do you want to do? (A)dd an employee or (Q)uit: ");
+                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (Q)uit: ");
                 var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
                 {
                     // They said quit, so set our keepGoing to false
                     keepGoing = false;
+                }
+                else if (choice == "S")
+                {
+                    // show all the employees
+
+                    // Loop through each employee
+                    foreach (var employee in employees)
+                    {
+                        // And print details
+                        Console.WriteLine($"{employee.Name} is in department {employee.Department} and makes ${employee.Salary}");
+                    }
                 }
                 else
                 {
