@@ -47,6 +47,12 @@ namespace EmployeeDatabase
         {
             return employees;
         }
+
+        // Remove an employee
+        public void RemoveEmployee(Employee employeeToRemove)
+        {
+            employees.Remove(employeeToRemove);
+        }
     }
 
     class Program
@@ -85,7 +91,7 @@ namespace EmployeeDatabase
 
         static void Main(string[] args)
         {
-            var employees = new List<Employee>();
+            var database = new EmployeeDatabase();
 
             DisplayGreeting();
 
@@ -110,7 +116,7 @@ namespace EmployeeDatabase
 
                         // Make a new variable to store the found employee, initializing
                         // to null which will indicate no match found
-                        Employee foundEmployeeToUpdate = employees.FirstOrDefault(employee => employee.Name == nameToUpdate);
+                        Employee foundEmployeeToUpdate = database.FindEmployee(nameToUpdate);
 
                         if (foundEmployeeToUpdate == null)
                         {
@@ -129,7 +135,7 @@ namespace EmployeeDatabase
 
                         // Make a new variable to store the found employee, initializing
                         // to null which will indicate no match found
-                        Employee foundEmployeeToDelete = employees.FirstOrDefault(employee => employee.Name == nameToDelete);
+                        Employee foundEmployeeToDelete = database.FindEmployee(nameToDelete);
 
                         if (foundEmployeeToDelete == null)
                         {
@@ -137,7 +143,7 @@ namespace EmployeeDatabase
                         }
                         else
                         {
-                            employees.Remove(foundEmployeeToDelete);
+                            database.RemoveEmployee(foundEmployeeToDelete);
                             Console.WriteLine($"Goodbye {nameToDelete}");
                         }
                         break;
@@ -148,7 +154,7 @@ namespace EmployeeDatabase
 
                         // Make a new variable to store the found employee, initializing
                         // to null which will indicate no match found
-                        Employee foundEmployeeToFind = employees.FirstOrDefault(employee => employee.Name == nameToFind);
+                        Employee foundEmployeeToFind = database.FindEmployee(nameToFind);
 
                         // If the foundEmployee is still null, nothing was found
                         if (foundEmployeeToFind == null)
@@ -166,7 +172,8 @@ namespace EmployeeDatabase
                         // show all the employees
 
                         // Loop through each employee
-                        foreach (var employeeToShow in employees)
+                        var allTheEmployeeFromTheDatabase = database.GetAllEmployees();
+                        foreach (var employeeToShow in allTheEmployeeFromTheDatabase)
                         {
                             // And print details
                             Console.WriteLine($"{employeeToShow.Name} is in department {employeeToShow.Department} and makes ${employeeToShow.Salary}");
@@ -183,7 +190,7 @@ namespace EmployeeDatabase
                         employee.Department = PromptForInteger("What is your department number? ");
                         employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
-                        employees.Add(employee);
+                        database.AddEmployee(employee);
                         break;
                 }
             }
