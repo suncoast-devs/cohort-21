@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EmployeeDatabase
 {
@@ -75,18 +76,7 @@ namespace EmployeeDatabase
 
                     // Make a new variable to store the found employee, initializing
                     // to null which will indicate no match found
-                    Employee foundEmployee = null;
-
-                    // Go through all the employees
-                    foreach (var employee in employees)
-                    {
-                        // If the name matches
-                        if (employee.Name == name)
-                        {
-                            // ... then store this employee in the foundEmployee variable
-                            foundEmployee = employee;
-                        }
-                    }
+                    Employee foundEmployee = employees.FirstOrDefault(employee => employee.Name == name);
 
                     // If the foundEmployee is still null, nothing was found
                     if (foundEmployee == null)
