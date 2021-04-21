@@ -61,13 +61,32 @@ namespace EmployeeDatabase
             while (keepGoing)
             {
                 // Inert a blank line then prompt them and get their answer (force uppercase)
+                // Console.Clear();
                 Console.WriteLine();
-                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (F)ind an employee or (Q)uit: "); var choice = Console.ReadLine().ToUpper();
+                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (F)ind an employee or (D)elete an employee or (Q)uit: "); var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
                 {
                     // They said quit, so set our keepGoing to false
                     keepGoing = false;
+                }
+                else if (choice == "D")
+                {
+                    var name = PromptForString("What name are you looking for: ");
+
+                    // Make a new variable to store the found employee, initializing
+                    // to null which will indicate no match found
+                    Employee foundEmployee = employees.FirstOrDefault(employee => employee.Name == name);
+
+                    if (foundEmployee == null)
+                    {
+                        Console.WriteLine("Nobody by that name to delete!");
+                    }
+                    else
+                    {
+                        employees.Remove(foundEmployee);
+                        Console.WriteLine($"Goodbye {name}");
+                    }
                 }
                 else if (choice == "F")
                 {
@@ -99,6 +118,9 @@ namespace EmployeeDatabase
                         // And print details
                         Console.WriteLine($"{employee.Name} is in department {employee.Department} and makes ${employee.Salary}");
                     }
+
+                    // Console.WriteLine("Press any key to continue");
+                    // Console.ReadKey();
                 }
                 else
                 {
