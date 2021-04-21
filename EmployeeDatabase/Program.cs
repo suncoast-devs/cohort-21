@@ -53,15 +53,33 @@ namespace EmployeeDatabase
         {
             var employees = new List<Employee>();
 
-            var employee = new Employee();
-
             DisplayGreeting();
 
-            employee.Name = PromptForString("What is your name? ");
-            employee.Department = PromptForInteger("What is your department number? ");
-            employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+            var keepGoing = true;
 
-            employees.Add(employee);
+            while (keepGoing)
+            {
+                // Inert a blank line then prompt them and get their answer (force uppercase)
+                Console.WriteLine();
+                Console.Write("What do you want to do? (A)dd an employee or (Q)uit: ");
+                var choice = Console.ReadLine().ToUpper();
+
+                if (choice == "Q")
+                {
+                    // They said quit, so set our keepGoing to false
+                    keepGoing = false;
+                }
+                else
+                {
+                    var employee = new Employee();
+
+                    employee.Name = PromptForString("What is your name? ");
+                    employee.Department = PromptForInteger("What is your department number? ");
+                    employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+
+                    employees.Add(employee);
+                }
+            }
         }
     }
 }
