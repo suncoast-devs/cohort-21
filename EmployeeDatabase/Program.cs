@@ -63,12 +63,31 @@ namespace EmployeeDatabase
                 // Inert a blank line then prompt them and get their answer (force uppercase)
                 // Console.Clear();
                 Console.WriteLine();
-                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (F)ind an employee or (D)elete an employee or (Q)uit: "); var choice = Console.ReadLine().ToUpper();
+                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (F)ind an employee or (D)elete an employee or (U)pdate an employee or (Q)uit: "); var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
                 {
                     // They said quit, so set our keepGoing to false
                     keepGoing = false;
+                }
+                else if (choice == "U")
+                {
+                    var name = PromptForString("What name are you looking for: ");
+
+                    // Make a new variable to store the found employee, initializing
+                    // to null which will indicate no match found
+                    Employee foundEmployee = employees.FirstOrDefault(employee => employee.Name == name);
+
+                    if (foundEmployee == null)
+                    {
+                        Console.WriteLine("Nobody by that name to update!");
+                    }
+                    else
+                    {
+                        var newSalary = PromptForInteger($"What is {name}'s new salary? ");
+
+                        foundEmployee.Salary = newSalary;
+                    }
                 }
                 else if (choice == "D")
                 {
