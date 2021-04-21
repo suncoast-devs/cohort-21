@@ -61,13 +61,43 @@ namespace EmployeeDatabase
             {
                 // Inert a blank line then prompt them and get their answer (force uppercase)
                 Console.WriteLine();
-                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (Q)uit: ");
-                var choice = Console.ReadLine().ToUpper();
+                Console.Write("What do you want to do? (A)dd an employee or (S)how all the employees or (F)ind an employee or (Q)uit: "); var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
                 {
                     // They said quit, so set our keepGoing to false
                     keepGoing = false;
+                }
+                else if (choice == "F")
+                {
+                    // Ask for the name of an employee
+                    var name = PromptForString("What name are you looking for: ");
+
+                    // Make a new variable to store the found employee, initializing
+                    // to null which will indicate no match found
+                    Employee foundEmployee = null;
+
+                    // Go through all the employees
+                    foreach (var employee in employees)
+                    {
+                        // If the name matches
+                        if (employee.Name == name)
+                        {
+                            // ... then store this employee in the foundEmployee variable
+                            foundEmployee = employee;
+                        }
+                    }
+
+                    // If the foundEmployee is still null, nothing was found
+                    if (foundEmployee == null)
+                    {
+                        Console.WriteLine("No match found");
+                    }
+                    else
+                    {
+                        // Otherwise print details of the found employee
+                        Console.WriteLine($"{foundEmployee.Name} is in department {foundEmployee.Department} and makes ${foundEmployee.Salary}");
+                    }
                 }
                 else if (choice == "S")
                 {
