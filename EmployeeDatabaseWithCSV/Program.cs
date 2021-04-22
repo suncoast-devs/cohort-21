@@ -40,6 +40,7 @@ namespace EmployeeDatabase
         static void Main(string[] args)
         {
             var database = new EmployeeDatabase();
+            database.LoadEmployeesFromCSV();
 
             DisplayGreeting();
 
@@ -55,6 +56,8 @@ namespace EmployeeDatabase
                 switch (choice)
                 {
                     case "Q":
+                        database.SaveEmployeesToCSV();
+
                         // They said quit, so set our keepGoing to false
                         keepGoing = false;
                         break;

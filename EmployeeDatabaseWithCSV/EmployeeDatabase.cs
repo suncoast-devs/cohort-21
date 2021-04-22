@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using CsvHelper;
 
 namespace EmployeeDatabase
 {
@@ -49,6 +52,10 @@ namespace EmployeeDatabase
         public void SaveEmployeesToCSV()
         {
             // Save the list of employees
+            var fileWriter = new StreamWriter("employees.csv");
+            var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            csvWriter.WriteRecords(employees);
+            fileWriter.Close();
         }
     }
 }
