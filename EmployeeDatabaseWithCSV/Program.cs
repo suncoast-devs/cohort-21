@@ -79,6 +79,8 @@ namespace EmployeeDatabase
 
                             foundEmployeeToUpdate.Salary = newSalary;
                         }
+
+                        database.SaveEmployeesToCSV();
                         break;
 
                     case "D":
@@ -97,6 +99,8 @@ namespace EmployeeDatabase
                             database.RemoveEmployee(foundEmployeeToDelete);
                             Console.WriteLine($"Goodbye {nameToDelete}");
                         }
+
+                        database.SaveEmployeesToCSV();
                         break;
 
                     case "F":
@@ -142,6 +146,8 @@ namespace EmployeeDatabase
                         employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
                         database.AddEmployee(employee);
+
+                        database.SaveEmployeesToCSV();
                         break;
                 }
             }

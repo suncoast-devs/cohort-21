@@ -1,3 +1,6 @@
-Salary,Department,Name
-10000,100,Jason
-5000,42,Gavin
+Name,Department,Salary
+Jason,100,10000
+Barbara,1,200000
+Phil,3,5000
+Aaron,42,1000
+Alice,100,2000

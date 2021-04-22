@@ -47,6 +47,13 @@ namespace EmployeeDatabase
         public void LoadEmployeesFromCSV()
         {
             // Load the list of employees
+            if (File.Exists("employees.csv"))
+            {
+                var fileReader = new StreamReader("employees.csv");
+                var csvReader = new CsvReader(fileReader, CultureInfo.InvariantCulture);
+                employees = csvReader.GetRecords<Employee>().ToList();
+                fileReader.Close();
+            }
         }
 
         public void SaveEmployeesToCSV()
