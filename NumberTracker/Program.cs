@@ -14,26 +14,35 @@ namespace NumberTracker
         {
             Console.WriteLine("Welcome to Number Tracker");
 
-            var fileReader = new StreamReader("numbers.csv");
+            // - Create an empty list of numbers.
+            var numbers = new List<int>();
 
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            // - If there is a file
+            if (File.Exists("numbers.csv"))
             {
-                // Tell the reader not to interpret the first
-                // row as a "header" since it is just the
-                // first number.
-                HasHeaderRecord = false,
-            };
+                // use StreamReader + CsvReader to *replace* the contents of the list
+                var fileReader = new StreamReader("numbers.csv");
 
-            var csvReader = new CsvReader(fileReader, config);
+                var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    // Tell the reader not to interpret the first
+                    // row as a "header" since it is just the
+                    // first number.
+                    HasHeaderRecord = false,
+                };
+
+                var csvReader = new CsvReader(fileReader, config);
 
 
-            // Creates a list of numbers we will be tracking
-            //
-            //            reader
-            //                      read rows from the stream
-            //                                 each row is an int
-            //                                        Give me back a List (List<int>)
-            var numbers = csvReader.GetRecords<int>().ToList();
+                // Creates a list of numbers we will be tracking
+                //
+                //            reader
+                //                      read rows from the stream
+                //                                 each row is an int
+                //                                        Give me back a List (List<int>)
+                numbers = csvReader.GetRecords<int>().ToList();
+            }
+
 
             // Controls if we are still running our loop asking for more numbers
             var isRunning = true;
