@@ -40,5 +40,15 @@ namespace EmployeeDatabase
         {
             employees.Remove(employeeToRemove);
         }
+
+        public void LoadEmployeesFromCSV()
+        {
+            // Load the list of employees
+        }
+
+        public void SaveEmployeesToCSV()
+        {
+            // Save the list of employees
+        }
     }
 }
