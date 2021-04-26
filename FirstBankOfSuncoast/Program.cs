@@ -87,6 +87,27 @@ namespace FirstBankOfSuncoast
                         break;
 
                     case "HISTORY":
+                        // Ask the user if they would like to choose Savings or Checking?
+                        var historyChoice = PromptForString("Do you want history for Savings or Checking");
+
+                        // If (Savings)
+                        if (historyChoice == "Savings")
+                        {
+                            // Filter Out the Account by Savings
+                            var savingsTransactions = transactions.Where(transaction => transaction.Account == "Savings");
+
+                            // Foreach(var save in savings)
+                            foreach (var transaction in savingsTransactions)
+                            {
+                                // Print out the transaction
+                                Console.WriteLine($"{transaction.Amount} - {transaction.Type}");
+                            }
+                        }
+
+                        // If (Checking)
+                        // Filter Out the Account by Checking
+                        // Foreach(var save in savings)
+                        // Print out your transaction history for savings
                         break;
 
                     case "QUIT":
