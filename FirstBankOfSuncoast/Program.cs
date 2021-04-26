@@ -90,33 +90,16 @@ namespace FirstBankOfSuncoast
                         // Ask the user if they would like to choose Savings or Checking?
                         var historyChoice = PromptForString("Do you want history for Savings or Checking? ");
 
-                        // If (Savings)
-                        if (historyChoice == "Savings")
-                        {
-                            // Filter Out the Account by Savings
-                            var savingsTransactions = transactions.Where(transaction => transaction.Account == "Savings");
+                        // Filter Out the Account 
+                        var filteredTransactions = transactions.Where(transaction => transaction.Account == historyChoice);
 
-                            // Foreach(var save in savings)
-                            foreach (var transaction in savingsTransactions)
-                            {
-                                // Print out the transaction
-                                Console.WriteLine($"{transaction.Amount} - {transaction.Type}");
-                            }
+                        // Foreach(var save in savings)
+                        foreach (var transaction in filteredTransactions)
+                        {
+                            // Print out the transaction
+                            Console.WriteLine($"{transaction.Amount} - {transaction.Type}");
                         }
 
-                        // If (Checking)
-                        if (historyChoice == "Checking")
-                        {
-                            // Filter Out the Account by Checking
-                            var checkingTransactions = transactions.Where(transaction => transaction.Account == "Checking");
-
-                            // Foreach(var save in savings)
-                            foreach (var transaction in checkingTransactions)
-                            {
-                                // Print out your transaction history for savings
-                                Console.WriteLine($"{transaction.Amount} - {transaction.Type}");
-                            }
-                        }
                         break;
 
                     case "QUIT":
