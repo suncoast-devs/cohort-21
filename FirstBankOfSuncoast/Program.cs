@@ -86,18 +86,12 @@ namespace FirstBankOfSuncoast
                     case "BALANCE":
                         // Ask the user if they would like to choose Savings or Checking?
                         var balanceChoice = PromptForString("Do you want balance for Savings or Checking? ");
+
                         // Filter Out Account Type
                         var balanceFilteredTransactions = transactions.Where(transaction => transaction.Account == balanceChoice);
 
-                        // 	Filter Out the Deposit and Sum the Total of the Deposit
-                        var depositBalanceTransactions = balanceFilteredTransactions.Where(transaction => transaction.Type == "Deposit");
-                        var withdrawBalanceTransactions = balanceFilteredTransactions.Where(transaction => transaction.Type == "Withdraw");
-
-                        var depositBalanceTotal = depositBalanceTransactions.Sum(transaction => transaction.Amount);
-                        var withdrawBalanceTotal = withdrawBalanceTransactions.Sum(transaction => transaction.Amount);
-
-
-                        var balance = depositBalanceTotal - withdrawBalanceTotal;
+                        var balance = balanceFilteredTransactions.Where(transaction => transaction.Type == "Deposit").Sum(transaction => transaction.Amount) -
+                                      balanceFilteredTransactions.Where(transaction => transaction.Type == "Withdraw").Sum(transaction => transaction.Amount);
 
                         Console.WriteLine($"Your {balanceChoice} balance is {balance}");
 
