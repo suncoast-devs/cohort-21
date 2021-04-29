@@ -140,6 +140,21 @@ namespace SuncoastMovies
             // transactions.Add(newTransaction);
             context.Movies.Add(newMovie);
             context.SaveChanges();
+
+            // Search for a movie by name. FirstOrDefault takes a function to use to compare the movies and returns the first record that matches, or if nothing matches, returns null.
+            // This is the same as we used with LINQ against a List, but this time it is searching the database.
+            var existingMovie = context.Movies.FirstOrDefault(movie => movie.Title == "SpaceBalls");
+
+            // If we found an existing movie.
+            if (existingMovie != null)
+            {
+                // Change the title of this movie.
+                existingMovie.Title = "SpaceBalls - the best movie ever";
+
+                // Ask the context to save changes.
+                context.SaveChanges();
+            }
+
         }
     }
 }
