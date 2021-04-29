@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace SuncoastMovies
 {
@@ -13,6 +14,9 @@ namespace SuncoastMovies
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+            optionsBuilder.UseLoggerFactory(loggerFactory);
+
             optionsBuilder.UseNpgsql("server=localhost;database=SuncoastMovies");
         }
     }
