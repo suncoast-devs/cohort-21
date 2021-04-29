@@ -11,6 +11,7 @@ namespace SuncoastMovies
         // "Movie" is our C# class in .NET world
         // "DbSet" is like database powered `List`
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +29,12 @@ namespace SuncoastMovies
         public string PrimaryDirector { get; set; }
         public int YearReleased { get; set; }
         public string Genre { get; set; }
+    }
+
+    class Rating
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
     }
 
     class Program
