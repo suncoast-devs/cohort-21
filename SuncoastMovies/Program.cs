@@ -155,6 +155,18 @@ namespace SuncoastMovies
                 context.SaveChanges();
             }
 
+            var existingMovieToDelete = context.Movies.FirstOrDefault(movie => movie.Title == "Cujo");
+
+            // If we found an existing movie.
+            if (existingMovieToDelete != null)
+            {
+                // Remove the existing movie from the collection
+                context.Movies.Remove(existingMovieToDelete);
+
+                // Ask the context to save changes, in this case deleting the record.
+                context.SaveChanges();
+            }
+
         }
     }
 }
