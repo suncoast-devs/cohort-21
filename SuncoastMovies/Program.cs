@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,8 @@ namespace SuncoastMovies
         // "DbSet" is like database powered `List`
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Actor> Actors { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,12 +44,47 @@ namespace SuncoastMovies
         //      v       v
         public Rating Rating { get; set; }
 
+        // This is the related list of roles we an use (if properly used with Include)
+        //
+        // Since a Movie "has many" Roles we setup this code. Teaches
+        // Entity Framework that single Movie object can see "many" (List) Roles (each being a Role object)
+        public List<Role> Roles { get; set; }
     }
 
     class Rating
     {
         public int Id { get; set; }
         public string Description { get; set; }
+    }
+
+    class Actor
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public DateTime Birthday { get; set; }
+
+        // This is the related list of roles we an use (if properly used with Include)
+        //
+        // Since a Movie "has many" Roles we setup this code. Teaches
+        // Entity Framework that single Movie object can see "many" (List) Roles (each being a Role object)
+        public List<Role> Roles { get; set; }
+    }
+
+    class Role
+    {
+        public int Id { get; set; }
+        public string CharacterName { get; set; }
+
+        // This is the column in the database
+        public int MovieId { get; set; }
+        // This is the related object we can use from our code (if properly used with Include)
+        public Movie Movie { get; set; }
+
+
+        // This is the column in the database
+        public int ActorId { get; set; }
+        // This is the related object we can use from our code (if properly used with Include)
+        public Actor Actor { get; set; }
     }
 
     class Program
@@ -64,8 +102,14 @@ namespace SuncoastMovies
             Console.WriteLine($"There are {moviesCount} movies in our database");
 
             // Makes a new collection of movies but each movie knows the associated Rating object
-            var moviesWithRatings = context.Movies.Include(movie => movie.Rating);
-            foreach (var movie in moviesWithRatings)
+            var moviesWithRatingsRolesAndActors = context.Movies.
+                                                    // from our movie, please include the associated Rating object
+                                                    Include(movie => movie.Rating).
+                                                    // ... and from our movie, please include the associated Roles LIST
+                                                    Include(movie => movie.Roles).
+                                                    // THEN for each of roles, please include the associated Actor object
+                                                    ThenInclude(role => role.Actor);
+            foreach (var movie in moviesWithRatingsRolesAndActors)
             {
                 if (movie.Rating == null)
                 {
@@ -74,6 +118,11 @@ namespace SuncoastMovies
                 else
                 {
                     Console.WriteLine($"Movie {movie.Title} - {movie.Rating.Description}");
+                }
+
+                foreach (var role in movie.Roles)
+                {
+                    Console.WriteLine($" - {role.CharacterName} is played by {role.Actor.FullName}");
                 }
             }
 
