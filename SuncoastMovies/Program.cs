@@ -29,6 +29,18 @@ namespace SuncoastMovies
         public string PrimaryDirector { get; set; }
         public int YearReleased { get; set; }
         public string Genre { get; set; }
+
+        // The RatingId (foreign key)
+        public int RatingId { get; set; }
+
+        //
+        //     Data Type (the Rating class)
+        //      |
+        //      |     Name Of The Property
+        //      |       |
+        //      v       v
+        public Rating Rating { get; set; }
+
     }
 
     class Rating
@@ -51,9 +63,18 @@ namespace SuncoastMovies
 
             Console.WriteLine($"There are {moviesCount} movies in our database");
 
-            foreach (var movie in context.Movies)
+            // Makes a new collection of movies but each movie knows the associated Rating object
+            var moviesWithRatings = context.Movies.Include(movie => movie.Rating);
+            foreach (var movie in moviesWithRatings)
             {
-                Console.WriteLine($"There is a movie named {movie.Title}");
+                if (movie.Rating == null)
+                {
+                    Console.WriteLine($"There is a movie named {movie.Title}");
+                }
+                else
+                {
+                    Console.WriteLine($"Movie {movie.Title} - {movie.Rating.Description}");
+                }
             }
 
         }
