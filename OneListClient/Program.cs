@@ -43,9 +43,25 @@ namespace OneListClient
         {
             var client = new HttpClient();
 
-            var responseAsStream = await client.GetStreamAsync(
-              "https://one-list-api.herokuapp.com/items?access_token=sdg-handbook"
-            );
+            // let the token be the first argument to our program!
+            var token = "";
+
+            // If there are NO ARGUMENTS
+            if (args.Length == 0)
+            {
+                // Ask the user for the token to use
+                Console.Write("What list do you want? ");
+                token = Console.ReadLine();
+            }
+            else
+            {
+                // Otherwise take the first one
+                token = args[0];
+            }
+
+            var url = $"https://one-list-api.herokuapp.com/items?access_token={token}";
+
+            var responseAsStream = await client.GetStreamAsync(url);
 
             var items = await JsonSerializer.DeserializeAsync<List<Item>>(responseAsStream);
 
