@@ -14,7 +14,19 @@ namespace BasicAPI.Controllers
         [HttpGet]
         public string SayHello(string who)
         {
-            return $"Hello, {who}. It is currently {DateTime.Now}";
+            string whoOrWorld;
+
+            if (who == null)
+            {
+                whoOrWorld = "World";
+            }
+            else
+            {
+                whoOrWorld = who;
+            }
+
+
+            return $"Hello, {whoOrWorld}. It is currently {DateTime.Now}";
         }
     }
 }
