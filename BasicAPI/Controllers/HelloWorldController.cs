@@ -14,7 +14,7 @@ namespace BasicAPI.Controllers
         [HttpGet]
         public string SayHello()
         {
-            return "Hello, World. I am an API.";
+            return $"Hello, World. It is currently {DateTime.Now}";
         }
     }
 }
