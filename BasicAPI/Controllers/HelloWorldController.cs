@@ -12,9 +12,9 @@ namespace BasicAPI.Controllers
     public class HelloWorldController : ControllerBase
     {
         [HttpGet]
-        public string SayHello()
+        public string SayHello(string who)
         {
-            return $"Hello, World. It is currently {DateTime.Now}";
+            return $"Hello, {who}. It is currently {DateTime.Now}";
         }
     }
 }
