@@ -12,7 +12,7 @@ namespace BasicAPI.Controllers
     public class DiceController : ControllerBase
     {
         [HttpGet("{sides}")]
-        public List<int> Roll(int sides, int count)
+        public List<int> Roll(int sides, int count = 1)
         {
             // Make a random number generator
             var randomNumberGenerator = new Random();
