@@ -14,6 +14,7 @@ namespace GameNightWithFriends.Models
         private static bool LOG_SQL_STATEMENTS_IN_DEVELOPMENT = true;
 
         // Add database tables here
+        public DbSet<GameNight> GameNights { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
