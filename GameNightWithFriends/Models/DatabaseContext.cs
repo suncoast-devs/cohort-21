@@ -15,6 +15,7 @@ namespace GameNightWithFriends.Models
 
         // Add database tables here
         public DbSet<GameNight> GameNights { get; set; }
+        public DbSet<Player> Players { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
