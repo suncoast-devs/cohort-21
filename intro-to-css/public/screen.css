@@ -15,10 +15,29 @@ h1,
 h2 {
   color: blue;
   background-color: yellow;
-  border: 1px solid black;
+  border: 5px solid black;
+  border-radius: 5rem;
   /* border-width: 15px;
   border-style: solid;
   border-color: black; */
+
+  /* 1rem (16px) of space ABOVE, RIGHT, BELLOW, LEFT of the content */
+  padding: 1rem;
+  /* padding-top: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem; */
+
+  /* TOP AND BOTTOM 1rem -- LEFT and RIGHT 2rem; */
+  padding: 1rem 2rem;
+
+  /* 1rem top 3rem left and right 1 rem bottom */
+  padding: 1rem 3rem 2rem;
+
+  /* Top 1rem, right 2rem, bottom 3rem, left 4rem */
+  padding: 1rem 2rem 3rem 4rem;
+
+  margin: 3rem;
 }
 
 p {
@@ -55,10 +74,20 @@ li:nth-child(odd) {
 }
 
 p::first-letter {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 p::before {
   content: '🍕';
-  font-size: 1.5rem;
+  font-size: 1.5em;
+}
+
+/* All H1 that are INSIDE of a UL */
+ul h1 {
+  text-decoration: underline;
+}
+
+/* This styles any paragraph that FOLLOWS another paragraph */
+p + p {
+  text-decoration: underline;
 }
