@@ -24,6 +24,12 @@ p {
   color: red;
 }
 
+/* paragraphs, BUT when they are HOVERED*/
+p:hover {
+  color: green;
+  text-transform: uppercase;
+}
+
 /* The element with the class "first" is bolded */
 .first {
   font-weight: bold;
@@ -32,4 +38,17 @@ p {
 /* All the elements with the class "done" are strikethrough */
 .done {
   text-decoration: line-through;
+}
+
+#polite {
+  font-family: cursive;
+}
+
+#rude {
+  font-family: monospace;
+  text-transform: uppercase;
+}
+
+li:nth-child(odd) {
+  color: green;
 }
