@@ -52,3 +52,12 @@ p:hover {
 li:nth-child(odd) {
   color: green;
 }
+
+p::first-letter {
+  font-size: 1.5rem;
+}
+
+p::before {
+  content: '🍕';
+  font-size: 1.5rem;
+}
