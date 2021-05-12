@@ -36,6 +36,7 @@ ul {
      layout of MY CHILDREN
   */
   display: flex;
+  flex-wrap: wrap;
 }
 
 /* ul li { */
