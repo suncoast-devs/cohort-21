@@ -22,10 +22,27 @@ img {
 }
 
 ul {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f7f0da;
 
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
+ul {
+  /*
+   Flexibly (along ONE axis) control the
+     layout of MY CHILDREN
+  */
+  display: flex;
+}
+
+/* ul li { */
+/* display: inline; */
+/*      TB  LR */
+/* margin: 0 1rem; */
+
+/* float: left;
+  padding: 0 1rem; */
+/* } */
