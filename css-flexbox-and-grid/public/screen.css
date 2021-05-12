@@ -31,20 +31,27 @@ ul {
 }
 
 ul {
-  /*
-   Flexibly (along ONE axis) control the
-     layout of MY CHILDREN
-  */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    '. . . header'
+    'main main . sidebar'
+    'footer footer footer footer';
 }
 
-/* ul li { */
-/* display: inline; */
-/*      TB  LR */
-/* margin: 0 1rem; */
+.A {
+  grid-area: footer;
+}
 
-/* float: left;
-  padding: 0 1rem; */
-/* } */
+.B {
+  grid-area: main;
+}
+
+.C {
+  grid-area: sidebar;
+}
+
+.D {
+  grid-area: header;
+}
