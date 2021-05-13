@@ -55,3 +55,25 @@ aside ul li a {
   text-decoration: none;
   padding: 3px 0;
 }
+
+@media all and (min-width: 800px) {
+  /* NEW RULES CAN BE PUT HERE */
+
+  /* Make the section element flexbox so the aside and the main will be in a row */
+  section {
+    padding-top: 2rem;
+    display: flex;
+  }
+
+  /* Remove the margin for the aside and set it to just over 1/3 the width */
+  aside {
+    margin: 0;
+    width: 35%;
+  }
+
+  /* Make the main part of the content the remainder of the width and use a sligihtly larger font */
+  main {
+    font-size: 1.5rem;
+    width: 65%;
+  }
+}
