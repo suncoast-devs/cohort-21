@@ -118,3 +118,9 @@ aside ul li a {
       left center no-repeat;
   }
 }
+
+@media print {
+  header {
+    display: none;
+  }
+}
