@@ -29,13 +29,17 @@ function main() {
   //
   // var lengths = colors.Select(color => color.Length);
   //
-  const lengths = colors.map(function (color) {
-    return color.length
-  })
+  const lengths = colors.map(color => color.length)
 
-  const uppercased = colors.map(function (color) {
-    return color.toUpperCase()
-  })
+  // These two are exactly the same
+  //
+  // function (color) {
+  //   return color.toUpperCase()
+  // }
+  //
+  // color => color.toUpperCase()
+
+  const uppercased = colors.map(color => color.toUpperCase())
 
   console.log(lengths)
   console.log(uppercased)
