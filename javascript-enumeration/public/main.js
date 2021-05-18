@@ -18,12 +18,21 @@ function main() {
     console.log(`The color at position ${index} is ${color}`)
   })
 
-  const lengths = []
+  // const lengths = []
 
-  colors.forEach(function (color) {
-    const lengthOfColor = color.length
+  // colors.forEach(function (color) {
+  //   const lengthOfColor = color.length
 
-    lengths.push(lengthOfColor)
+  //   lengths.push(lengthOfColor)
+  // })
+
+  //
+  // var lengths = colors.Select(color => color.Length);
+  //
+  const lengths = colors.map(function (color) {
+    const length = color.length
+
+    return length
   })
 
   console.log(lengths)
