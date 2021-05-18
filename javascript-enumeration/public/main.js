@@ -35,7 +35,14 @@ function main() {
     return length
   })
 
+  const uppercased = colors.map(function (color) {
+    const uppercase = color.toUpperCase()
+
+    return uppercase
+  })
+
   console.log(lengths)
+  console.log(uppercased)
 }
 
 document.addEventListener('DOMContentLoaded', main)
