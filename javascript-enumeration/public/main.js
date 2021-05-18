@@ -30,15 +30,11 @@ function main() {
   // var lengths = colors.Select(color => color.Length);
   //
   const lengths = colors.map(function (color) {
-    const length = color.length
-
-    return length
+    return color.length
   })
 
   const uppercased = colors.map(function (color) {
-    const uppercase = color.toUpperCase()
-
-    return uppercase
+    return color.toUpperCase()
   })
 
   console.log(lengths)
