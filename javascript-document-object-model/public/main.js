@@ -1,5 +1,8 @@
-function handleClickSquare() {
-  window.alert('You did it!')
+function handleClickSquare(event) {
+  const thingClickedOn = event.target
+
+  thingClickedOn.textContent = 'X'
+  thingClickedOn.classList.add('taken')
 }
 
 function main() {
@@ -8,12 +11,12 @@ function main() {
   // in a variable called firstListItem
   const firstListItem = document.querySelector('li')
 
-  // Change that object's textContent
-  firstListItem.textContent = 'X'
+  // // Change that object's textContent
+  // firstListItem.textContent = 'X'
 
-  // Ensure the `taken` class is applied
-  // so that the cursor styling is present
-  firstListItem.classList.add('taken')
+  // // Ensure the `taken` class is applied
+  // // so that the cursor styling is present
+  // firstListItem.classList.add('taken')
 
   //
   // What object
