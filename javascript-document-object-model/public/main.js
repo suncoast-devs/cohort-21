@@ -13,6 +13,15 @@ function handleClickSquare(event) {
   thingClickedOn.classList.add('taken')
   moveCounter++
 
+  // Get the header to query for the first `h1`
+  const header = document.querySelector('h1')
+
+  // Interpolate a string with the header and the count of moves
+  // and replace the text content of our header!
+
+  //           C#:    $"Move {moveCounter of Tic Tac Toe"
+  header.textContent = `Move ${moveCounter} of Tic Tac Toe`
+
   // If currentPlayer is precisely the text 'X', make the currentPlayer 'O'
   if (currentPlayer === 'X') {
     currentPlayer = 'O'
