@@ -9,7 +9,7 @@ function main() {
   // Give us the very first `li` you can find.
   // Put a *REFERENCE* to that object (from the DOM)
   // in a variable called firstListItem
-  const firstListItem = document.querySelector('li')
+  // const firstListItem = document.querySelector('li')
 
   // // Change that object's textContent
   // firstListItem.textContent = 'X'
@@ -28,7 +28,17 @@ function main() {
   //     |            |             |     function to call when it happens
   //     |            |             |        |
   //     v            v             v        v
-  firstListItem.addEventListener('click', handleClickSquare)
+  // firstListItem.addEventListener('click', handleClickSquare)
+
+  // Finds *ALL* the `li` elements in the document
+  const allSquares = document.querySelectorAll('li')
+
+  // Loop through them
+  allSquares.forEach(function (square) {
+    // For every element in allsquares, we'll call that `square`
+    // and setup a listener. THE SAME FUNCTION WORKS!
+    square.addEventListener('click', handleClickSquare)
+  })
 }
 
 document.addEventListener('DOMContentLoaded', main)
