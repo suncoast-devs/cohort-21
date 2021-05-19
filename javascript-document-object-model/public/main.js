@@ -1,4 +1,5 @@
 let currentPlayer = 'X'
+let moveCounter = 0
 
 function handleClickSquare(event) {
   const thingClickedOn = event.target
@@ -10,6 +11,7 @@ function handleClickSquare(event) {
 
   thingClickedOn.textContent = currentPlayer
   thingClickedOn.classList.add('taken')
+  moveCounter++
 
   // If currentPlayer is precisely the text 'X', make the currentPlayer 'O'
   if (currentPlayer === 'X') {
