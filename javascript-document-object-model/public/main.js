@@ -4,6 +4,11 @@ let moveCounter = 0
 function handleClickSquare(event) {
   const thingClickedOn = event.target
 
+  if (thingClickedOn.nodeName !== 'LI') {
+    console.log("You didn't click on an LI. Get outta here")
+    return
+  }
+
   if (thingClickedOn.classList.contains('taken')) {
     console.log('Nopes!')
     return
@@ -57,14 +62,17 @@ function main() {
   // firstListItem.addEventListener('click', handleClickSquare)
 
   // Finds *ALL* the `li` elements in the document
-  const allSquares = document.querySelectorAll('li')
+  // const allSquares = document.querySelectorAll('li')
 
-  // Loop through them
-  allSquares.forEach(function (square) {
-    // For every element in allsquares, we'll call that `square`
-    // and setup a listener. THE SAME FUNCTION WORKS!
-    square.addEventListener('click', handleClickSquare)
-  })
+  // // Loop through them
+  // allSquares.forEach(function (square) {
+  //   // For every element in allsquares, we'll call that `square`
+  //   // and setup a listener. THE SAME FUNCTION WORKS!
+  //   square.addEventListener('click', handleClickSquare)
+  // })
+
+  const gameBoard = document.querySelector('ul')
+  gameBoard.addEventListener('click', handleClickSquare)
 }
 
 document.addEventListener('DOMContentLoaded', main)
