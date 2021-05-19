@@ -6,6 +6,10 @@ function main() {
 
   // Change that object's textContent
   firstListItem.textContent = 'X'
+
+  // Ensure the `taken` class is applied
+  // so that the cursor styling is present
+  firstListItem.classList.add('taken')
 }
 
 document.addEventListener('DOMContentLoaded', main)
