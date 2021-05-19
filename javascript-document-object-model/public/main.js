@@ -3,6 +3,11 @@ let currentPlayer = 'X'
 function handleClickSquare(event) {
   const thingClickedOn = event.target
 
+  if (thingClickedOn.classList.contains('taken')) {
+    console.log('Nopes!')
+    return
+  }
+
   thingClickedOn.textContent = currentPlayer
   thingClickedOn.classList.add('taken')
 
