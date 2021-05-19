@@ -43,6 +43,14 @@ function main() {
 
   console.log(lengths)
   console.log(uppercased)
+
+  // C#:   var longColors = colors.Where(color => color.Length > 4)
+  // const longColors = colors.filter(function (color) {
+  //   return color.length > 4
+  // })
+  const longColors = colors.filter(color => color.length > 4)
+
+  console.log(longColors)
 }
 
 document.addEventListener('DOMContentLoaded', main)
