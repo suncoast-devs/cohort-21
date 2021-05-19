@@ -1,8 +1,18 @@
+let currentPlayer = 'X'
+
 function handleClickSquare(event) {
   const thingClickedOn = event.target
 
-  thingClickedOn.textContent = 'X'
+  thingClickedOn.textContent = currentPlayer
   thingClickedOn.classList.add('taken')
+
+  // If currentPlayer is precisely the text 'X', make the currentPlayer 'O'
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O'
+  } else {
+    // Otherwise it was already 'O', so make it an 'X'
+    currentPlayer = 'X'
+  }
 }
 
 function main() {
