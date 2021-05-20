@@ -1,18 +1,41 @@
 // let teamOneName = `Team 1`
 // let teamOneScore = 0
-const teamOne = {
-  id: 1,
-  name: 'Team 1',
-  score: 0,
-}
+// const teamOne = {
+//   id: 1,
+//   name: 'Team 1',
+//   score: 0,
+// }
 
 // let teamTwoName = `Team 2`
 // let teamTwoScore = 0
-const teamTwo = {
-  id: 2,
-  name: 'Team 2',
-  score: 0,
-}
+// const teamTwo = {
+//   id: 2,
+//   name: 'Team 2',
+//   score: 0,
+// }
+
+const teams = [
+  {
+    id: 1,
+    name: 'Team 1',
+    score: 0,
+  },
+  {
+    id: 2,
+    name: 'Team 2',
+    score: 0,
+  },
+  {
+    id: 3,
+    name: 'Team 3',
+    score: 0,
+  },
+  {
+    id: 4,
+    name: 'Team 4',
+    score: 0,
+  },
+]
 
 function renderTeam(whichTeamToRender) {
   const html = `
@@ -60,15 +83,21 @@ function render() {
   <h1>My Score Board</h1>
 </header>
 <main>
-  ${renderTeam(teamOne)} 
-  ${renderTeam(teamTwo)}
+  ${teams
+    .map(function (team) {
+      return renderTeam(team)
+    })
+    .join('')}
 </main>
   `
 
   document.body.innerHTML = html
 
-  setupListeners(teamOne)
-  setupListeners(teamTwo)
+  // setupListeners(teamOne)
+  // setupListeners(teamTwo)
+  teams.forEach(function (team) {
+    setupListeners(team)
+  })
 }
 
 function main() {
