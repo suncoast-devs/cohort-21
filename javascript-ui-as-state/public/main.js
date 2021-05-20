@@ -1,8 +1,16 @@
-let teamOneName = `Team 1`
-let teamOneScore = 0
+// let teamOneName = `Team 1`
+// let teamOneScore = 0
+const teamOne = {
+  name: 'Team 1',
+  score: 0,
+}
 
-let teamTwoName = `Team 2`
-let teamTwoScore = 0
+// let teamTwoName = `Team 2`
+// let teamTwoScore = 0
+const teamTwo = {
+  name: 'Team 2',
+  score: 0,
+}
 
 function render() {
   const html = `
@@ -11,10 +19,10 @@ function render() {
 </header>
 <main>
   <section class="team1">
-    <h2>${teamOneName}</h2>
-    <h3>${teamOneScore}</h3>
+    <h2>${teamOne.name}</h2>
+    <h3>${teamOne.score}</h3>
     <fieldset>
-      <input type="text" placeholder="Name" value="${teamOneName}" />
+      <input type="text" placeholder="Name" value="${teamOne.name}" />
     </fieldset>
 
     <fieldset>
@@ -24,10 +32,10 @@ function render() {
   </section>
 
   <section class="team2">
-    <h2>${teamTwoName}</h2>
-    <h3>${teamTwoScore}</h3>
+    <h2>${teamTwo.name}</h2>
+    <h3>${teamTwo.score}</h3>
     <fieldset>
-      <input type="text" placeholder="Name" value="${teamTwoName}" />
+      <input type="text" placeholder="Name" value="${teamTwo.name}" />
     </fieldset>
 
     <fieldset>
@@ -43,38 +51,38 @@ function render() {
   document
     .querySelector('.team1 .add')
     .addEventListener('click', function (event) {
-      teamOneScore++
+      teamOne.score++
       render()
     })
   document
     .querySelector('.team1 .subtract')
     .addEventListener('click', function (event) {
-      teamOneScore--
+      teamOne.score--
       render()
     })
   document
     .querySelector('.team1 input')
     .addEventListener('input', function (event) {
-      teamOneName = event.target.value
+      teamOne.name = event.target.value
       render()
     })
 
   document
     .querySelector('.team2 .add')
     .addEventListener('click', function (event) {
-      teamTwoScore++
+      teamTwo.score++
       render()
     })
   document
     .querySelector('.team2 .subtract')
     .addEventListener('click', function (event) {
-      teamTwoScore--
+      teamTwo.score--
       render()
     })
   document
     .querySelector('.team2 input')
     .addEventListener('input', function (event) {
-      teamTwoName = event.target.value
+      teamTwo.name = event.target.value
       render()
     })
 }
