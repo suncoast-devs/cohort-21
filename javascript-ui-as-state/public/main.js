@@ -1,13 +1,23 @@
-let counter = 0
+let counter = 42
+
+function render() {
+  const html = `
+  <p>${counter}</p>
+  <button>Increment</button>
+  `
+
+  document.body.innerHTML = html
+}
 
 function main() {
+  render()
+
   const button = document.querySelector('button')
 
   button.addEventListener('click', function (event) {
-    counter++
+    counter = counter + 1
 
-    const counterElement = document.querySelector('p')
-    counterElement.textContent = counter
+    render()
   })
 }
 
