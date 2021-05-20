@@ -66,8 +66,10 @@ function setupListeners(team) {
   document
     .querySelector(`.team${team.id} .subtract`)
     .addEventListener('click', function (event) {
-      team.score--
-      render()
+      if (team.score > 0) {
+        team.score--
+        render()
+      }
     })
   document
     .querySelector(`.team${team.id} input`)
