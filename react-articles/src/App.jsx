@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { NewsArticle } from './components/NewsArticle'
 
 export class App extends Component {
   render() {
     return (
       <div className="all-main-content">
         <main>
+          <NewsArticle></NewsArticle>
+
           <article className="intro-article">
             <h2 className="article-title">SDG Announces Hackathon!</h2>
             <p>
