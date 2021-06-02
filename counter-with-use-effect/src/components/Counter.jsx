@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Counter() {
+export function Counter() {
   const [count, setCount] = useState(0)
 
   function handleClickButton() {
@@ -14,4 +14,8 @@ export default function Counter() {
       </p>
     </div>
   )
+}
+
+export function SuperAwesomeCounter() {
+  return <div>AWESOME!</div>
 }

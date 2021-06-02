@@ -1,5 +1,5 @@
 import React from 'react'
-import Counter from './components/Counter'
+import { Counter, SuperAwesomeCounter } from './components/Counter'
 
 export function App() {
   return (
