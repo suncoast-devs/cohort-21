@@ -1,29 +1,24 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 export function App() {
-  const [todoItems, setTodoItems] = useState([
-    { id: 1, text: 'Do a thing', complete: false },
-    { id: 2, text: 'Do something else', complete: false },
-    { id: 3, text: 'Do a third thing', complete: true },
-    { id: 4, text: 'Remind me about the important thing', complete: false },
-    {
-      id: 5,
-      text: 'The important things are the important things',
-      complete: false,
-    },
-  ])
+  const [todoItems, setTodoItems] = useState([])
 
-  useEffect(
-    function () {
-      // THIS is where I want my API access to go!
-      // -- API to *LOAD* the list of todos
-      console.log('Runs when first mounts')
-    },
-    [
-      // Nothing, runs only on mount
-    ]
-  )
+  useEffect(async function () {
+    const response = await axios.get(
+      'https://one-list-api.herokuapp.com/items?access_token=cohort42'
+    )
+
+    if (response.status === 200) {
+      console.log(response.data)
+
+      // response.data is an array of objects, JUST like I was setup for.
+      //
+      // "My todo items are the ones that came back from the API"
+      setTodoItems(response.data)
+    }
+  }, [])
 
   return (
     <div className="app">
