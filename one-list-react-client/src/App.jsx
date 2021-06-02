@@ -5,7 +5,7 @@ export function App() {
   const [todoItems, setTodoItems] = useState([
     { id: 1, text: 'Do a thing', complete: false },
     { id: 2, text: 'Do something else', complete: false },
-    { id: 3, text: 'Do a third thing', complete: false },
+    { id: 3, text: 'Do a third thing', complete: true },
     { id: 4, text: 'Remind me about the important thing', complete: false },
     {
       id: 5,
@@ -22,7 +22,14 @@ export function App() {
       <main>
         <ul>
           {todoItems.map(function (todoItem) {
-            return <li key={todoItem.id}>{todoItem.text}</li>
+            return (
+              <li
+                key={todoItem.id}
+                className={todoItem.complete ? 'completed' : ''}
+              >
+                {todoItem.text}
+              </li>
+            )
           })}
         </ul>
         <form>
