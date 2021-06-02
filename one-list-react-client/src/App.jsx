@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 export function App() {
@@ -13,6 +13,17 @@ export function App() {
       complete: false,
     },
   ])
+
+  useEffect(
+    function () {
+      // THIS is where I want my API access to go!
+      // -- API to *LOAD* the list of todos
+      console.log('Runs when first mounts')
+    },
+    [
+      // Nothing, runs only on mount
+    ]
+  )
 
   return (
     <div className="app">
