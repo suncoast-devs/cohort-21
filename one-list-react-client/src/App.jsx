@@ -5,7 +5,9 @@ import { TodoItem } from './components/TodoItem'
 
 export function App() {
   const [newTodoText, setNewTodoText] = useState('')
-  const [listName, setListName] = useState('cohort42')
+  const [listName, setListName] = useState(
+    localStorage.getItem('list-name') || 'cohort42'
+  )
   const [todoItems, setTodoItems] = useState([])
 
   async function loadTheItems() {
@@ -56,6 +58,15 @@ export function App() {
 
   console.log(`We are looking at list ${listName}`)
 
+  function handleChangeListName(newListName) {
+    // Change the state
+    setListName(newListName)
+
+    // But also remember in the browser local storage
+    // which list we are dealing with
+    localStorage.setItem('list-name', newListName)
+  }
+
   return (
     <div className="app">
       <header>
@@ -64,13 +75,17 @@ export function App() {
       <main>
         <ul>
           <li>
-            <button onClick={() => setListName('cohort42')}>Cohort 42</button>
+            <button onClick={() => handleChangeListName('cohort42')}>
+              Cohort 42
+            </button>
           </li>
           <li>
-            <button onClick={() => setListName('cohort-21')}>Cohort 21</button>
+            <button onClick={() => handleChangeListName('cohort-21')}>
+              Cohort 21
+            </button>
           </li>
           <li>
-            <button onClick={() => setListName('illustriousvoyage')}>
+            <button onClick={() => handleChangeListName('illustriousvoyage')}>
               illustriousvoyage
             </button>
           </li>
