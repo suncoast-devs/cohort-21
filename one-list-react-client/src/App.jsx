@@ -3,26 +3,46 @@ import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 export function App() {
+  const [listName, setListName] = useState('cohort42')
   const [todoItems, setTodoItems] = useState([])
 
-  useEffect(function () {
-    async function loadTheItems() {
-      const response = await axios.get(
-        'https://one-list-api.herokuapp.com/items?access_token=cohort42'
-      )
+  useEffect(
+    function () {
+      async function loadTheItems() {
+        const response = await axios.get(
+          `https://one-list-api.herokuapp.com/items?access_token=${listName}`
+        )
 
-      if (response.status === 200) {
-        console.log(response.data)
+        if (response.status === 200) {
+          console.log(response.data)
 
-        // response.data is an array of objects, JUST like I was setup for.
-        //
-        // "My todo items are the ones that came back from the API"
-        setTodoItems(response.data)
+          // response.data is an array of objects, JUST like I was setup for.
+          //
+          // "My todo items are the ones that came back from the API"
+          setTodoItems(response.data)
+        }
       }
-    }
 
-    loadTheItems()
-  }, [])
+      loadTheItems()
+    },
+    // Monitor the variable listName and any time it changes value
+    // Reload the data!
+    [listName]
+  )
+
+  function handleClickCohort21() {
+    setListName('cohort-21')
+  }
+
+  function handleClickCohort42() {
+    setListName('cohort42')
+  }
+
+  function handleClickIllustriousVoyage() {
+    setListName('illustriousvoyage')
+  }
+
+  console.log(`We are looking at list ${listName}`)
 
   return (
     <div className="app">
@@ -30,6 +50,19 @@ export function App() {
         <h1>One List</h1>
       </header>
       <main>
+        <ul>
+          <li>
+            <button onClick={handleClickCohort42}>Cohort 42</button>
+          </li>
+          <li>
+            <button onClick={handleClickCohort21}>Cohort 21</button>
+          </li>
+          <li>
+            <button onClick={handleClickIllustriousVoyage}>
+              illustriousvoyage
+            </button>
+          </li>
+        </ul>
         <ul>
           {todoItems.map(function (todoItem) {
             return (
