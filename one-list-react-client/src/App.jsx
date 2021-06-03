@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 function TodoItem(props) {
-  return (
-    <li key={props.id} className={props.complete ? 'completed' : ''}>
-      {props.text}
-    </li>
-  )
+  return <li className={props.complete ? 'completed' : ''}>{props.text}</li>
 }
 
 export function App() {
