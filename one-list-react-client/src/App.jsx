@@ -77,11 +77,7 @@ export function App() {
     )
 
     if (response.status === 201) {
-      const refreshTodoResponse = await axios.get(
-        `https://one-list-api.herokuapp.com/items?access_token=${listName}`
-      )
-
-      setTodoItems(refreshTodoResponse.data)
+      loadTheItems()
     }
 
     setNewTodoText('')
