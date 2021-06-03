@@ -3,14 +3,16 @@ import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 function TodoItem(props) {
+  const { id, complete, listName, reloadAfterChange } = props
+
   async function toggleCompleteStatus() {
     console.log('Clicked!')
 
     // The new status for completion is the opposite of the current status of completion
-    const newCompleteStatus = !props.complete
+    const newCompleteStatus = !complete
 
     const response = await axios.put(
-      `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
+      `https://one-list-api.herokuapp.com/items/${id}?access_token=${listName}`,
       { item: { complete: newCompleteStatus } }
     )
 
@@ -18,7 +20,7 @@ function TodoItem(props) {
       console.log(response.data)
 
       // Call whatever function I was given via the prop named "reloadAfterChange"
-      props.reloadAfterChange()
+      reloadAfterChange()
     }
   }
 
