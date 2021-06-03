@@ -47,10 +47,11 @@ export function App() {
     )
 
     if (response.status === 201) {
-      const newTodo = response.data
+      const refreshTodoResponse = await axios.get(
+        `https://one-list-api.herokuapp.com/items?access_token=${listName}`
+      )
 
-      const newTodoItems = [...todoItems, newTodo]
-      setTodoItems(newTodoItems)
+      setTodoItems(refreshTodoResponse.data)
     }
   }
 
