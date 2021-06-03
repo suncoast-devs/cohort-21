@@ -31,12 +31,6 @@ export function App() {
     [listName]
   )
 
-  function handleChangeNewTodoText(event) {
-    const currentInputText = event.target.value
-
-    setNewTodoText(currentInputText)
-  }
-
   console.log(`We are looking at list ${listName}`)
 
   return (
@@ -75,7 +69,9 @@ export function App() {
             type="text"
             placeholder="Whats up?"
             value={newTodoText}
-            onChange={handleChangeNewTodoText}
+            onChange={function (event) {
+              setNewTodoText(event.target.value)
+            }}
           />
         </form>
       </main>
