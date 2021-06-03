@@ -31,6 +31,14 @@ export function App() {
     [listName]
   )
 
+  function handleCreateNewTodoItem(event) {
+    // Please don't do your normal behavior
+    // which would be to submit the form and reload the page
+    event.preventDefault()
+
+    console.log(`Creating a new todo with ${newTodoText}!`)
+  }
+
   console.log(`We are looking at list ${listName}`)
 
   return (
@@ -64,7 +72,7 @@ export function App() {
             )
           })}
         </ul>
-        <form>
+        <form onSubmit={handleCreateNewTodoItem}>
           <input
             type="text"
             placeholder="Whats up?"
