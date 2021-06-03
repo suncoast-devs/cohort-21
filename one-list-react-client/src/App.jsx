@@ -6,9 +6,12 @@ function TodoItem(props) {
   async function toggleCompleteStatus() {
     console.log('Clicked!')
 
+    // The new status for completion is the opposite of the current status of completion
+    const newCompleteStatus = !props.complete
+
     const response = await axios.put(
       `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
-      { item: { complete: !props.complete } }
+      { item: { complete: newCompleteStatus } }
     )
 
     if (response.status === 200) {
