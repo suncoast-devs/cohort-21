@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 export function App() {
+  const [newTodoText, setNewTodoText] = useState('')
   const [listName, setListName] = useState('cohort42')
   const [todoItems, setTodoItems] = useState([])
 
@@ -29,6 +30,12 @@ export function App() {
     // Reload the data!
     [listName]
   )
+
+  function handleChangeNewTodoText(event) {
+    const currentInputText = event.target.value
+
+    setNewTodoText(currentInputText)
+  }
 
   console.log(`We are looking at list ${listName}`)
 
@@ -64,7 +71,12 @@ export function App() {
           })}
         </ul>
         <form>
-          <input type="text" placeholder="Whats up?" />
+          <input
+            type="text"
+            placeholder="Whats up?"
+            value={newTodoText}
+            onChange={handleChangeNewTodoText}
+          />
         </form>
       </main>
       <footer>
