@@ -16,6 +16,9 @@ function TodoItem(props) {
 
     if (response.status === 200) {
       console.log(response.data)
+
+      // Call whatever function I was given via the prop named "reloadAfterChange"
+      props.reloadAfterChange()
     }
   }
 
@@ -34,23 +37,23 @@ export function App() {
   const [listName, setListName] = useState('cohort42')
   const [todoItems, setTodoItems] = useState([])
 
+  async function loadTheItems() {
+    const response = await axios.get(
+      `https://one-list-api.herokuapp.com/items?access_token=${listName}`
+    )
+
+    if (response.status === 200) {
+      console.log(response.data)
+
+      // response.data is an array of objects, JUST like I was setup for.
+      //
+      // "My todo items are the ones that came back from the API"
+      setTodoItems(response.data)
+    }
+  }
+
   useEffect(
     function () {
-      async function loadTheItems() {
-        const response = await axios.get(
-          `https://one-list-api.herokuapp.com/items?access_token=${listName}`
-        )
-
-        if (response.status === 200) {
-          console.log(response.data)
-
-          // response.data is an array of objects, JUST like I was setup for.
-          //
-          // "My todo items are the ones that came back from the API"
-          setTodoItems(response.data)
-        }
-      }
-
       loadTheItems()
     },
     // Monitor the variable listName and any time it changes value
@@ -111,6 +114,7 @@ export function App() {
               <TodoItem
                 key={todoItem.id}
                 listName={listName}
+                reloadAfterChange={loadTheItems}
                 id={todoItem.id}
                 complete={todoItem.complete}
                 text={todoItem.text}
