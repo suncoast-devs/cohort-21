@@ -2,9 +2,12 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
-function TodoItem(props) {
-  const { id, complete, listName, reloadAfterChange } = props
-
+//                destructuring from whatever the first argument is (e.g. what we used to call props)
+//                |
+//                |  props.id      props.listName
+//                |  |             |
+//                v  v             v
+function TodoItem({ id, complete, listName, reloadAfterChange }) {
   async function toggleCompleteStatus() {
     console.log('Clicked!')
 
