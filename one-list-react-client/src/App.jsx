@@ -3,8 +3,28 @@ import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
 function TodoItem(props) {
-  function toggleCompleteStatus() {
+  async function toggleCompleteStatus() {
     console.log('Clicked!')
+
+    if (props.complete) {
+      const response = await axios.put(
+        `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
+        { item: { complete: false } }
+      )
+
+      if (response.status === 200) {
+        console.log(response.data)
+      }
+    } else {
+      const response = await axios.put(
+        `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
+        { item: { complete: true } }
+      )
+
+      if (response.status === 200) {
+        console.log(response.data)
+      }
+    }
   }
 
   return (
@@ -98,6 +118,7 @@ export function App() {
             return (
               <TodoItem
                 key={todoItem.id}
+                listName={listName}
                 id={todoItem.id}
                 complete={todoItem.complete}
                 text={todoItem.text}
