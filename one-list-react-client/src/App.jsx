@@ -2,6 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
+function TodoItem(props) {
+  return (
+    <li key={props.id} className={props.complete ? 'completed' : ''}>
+      {props.text}
+    </li>
+  )
+}
+
 export function App() {
   const [newTodoText, setNewTodoText] = useState('')
   const [listName, setListName] = useState('cohort42')
@@ -53,6 +61,8 @@ export function App() {
 
       setTodoItems(refreshTodoResponse.data)
     }
+
+    setNewTodoText('')
   }
 
   console.log(`We are looking at list ${listName}`)
@@ -79,12 +89,12 @@ export function App() {
         <ul>
           {todoItems.map(function (todoItem) {
             return (
-              <li
+              <TodoItem
                 key={todoItem.id}
-                className={todoItem.complete ? 'completed' : ''}
-              >
-                {todoItem.text}
-              </li>
+                id={todoItem.id}
+                complete={todoItem.complete}
+                text={todoItem.text}
+              />
             )
           })}
         </ul>
