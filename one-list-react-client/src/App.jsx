@@ -30,18 +30,6 @@ export function App() {
     [listName]
   )
 
-  function handleClickCohort21() {
-    setListName('cohort-21')
-  }
-
-  function handleClickCohort42() {
-    setListName('cohort42')
-  }
-
-  function handleClickIllustriousVoyage() {
-    setListName('illustriousvoyage')
-  }
-
   console.log(`We are looking at list ${listName}`)
 
   return (
@@ -52,13 +40,29 @@ export function App() {
       <main>
         <ul>
           <li>
-            <button onClick={handleClickCohort42}>Cohort 42</button>
+            <button
+              onClick={function () {
+                setListName('cohort42')
+              }}
+            >
+              Cohort 42
+            </button>
           </li>
           <li>
-            <button onClick={handleClickCohort21}>Cohort 21</button>
+            <button
+              onClick={function () {
+                setListName('cohort-21')
+              }}
+            >
+              Cohort 21
+            </button>
           </li>
           <li>
-            <button onClick={handleClickIllustriousVoyage}>
+            <button
+              onClick={function () {
+                setListName('illustriousvoyage')
+              }}
+            >
               illustriousvoyage
             </button>
           </li>
