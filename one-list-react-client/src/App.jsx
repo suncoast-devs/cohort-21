@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { PageFooter } from './components/PageFooter'
-import { TodoItemList } from './components/TodoItemList'
+import logo from './images/sdg-logo.png'
 
 export function App() {
   const [todoItems, setTodoItems] = useState([])
@@ -28,13 +27,27 @@ export function App() {
       </header>
       <main>
         <ul>
-          <TodoItemList todoItems={todoItems} />
+          {todoItems.map(function (todoItem) {
+            return (
+              <li
+                key={todoItem.id}
+                className={todoItem.complete ? 'completed' : ''}
+              >
+                {todoItem.text}
+              </li>
+            )
+          })}
         </ul>
         <form>
           <input type="text" placeholder="Whats up?" />
         </form>
       </main>
-      <PageFooter />
+      <footer>
+        <p>
+          <img src={logo} height="42" alt="logo" />
+        </p>
+        <p>&copy; 2020 Suncoast Developers Guild</p>
+      </footer>
     </div>
   )
 }
