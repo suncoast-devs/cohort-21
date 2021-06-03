@@ -6,24 +6,13 @@ function TodoItem(props) {
   async function toggleCompleteStatus() {
     console.log('Clicked!')
 
-    if (props.complete) {
-      const response = await axios.put(
-        `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
-        { item: { complete: false } }
-      )
+    const response = await axios.put(
+      `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
+      { item: { complete: !props.complete } }
+    )
 
-      if (response.status === 200) {
-        console.log(response.data)
-      }
-    } else {
-      const response = await axios.put(
-        `https://one-list-api.herokuapp.com/items/${props.id}?access_token=${props.listName}`,
-        { item: { complete: true } }
-      )
-
-      if (response.status === 200) {
-        console.log(response.data)
-      }
+    if (response.status === 200) {
+      console.log(response.data)
     }
   }
 
