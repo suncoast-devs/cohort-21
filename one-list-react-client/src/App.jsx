@@ -40,29 +40,13 @@ export function App() {
       <main>
         <ul>
           <li>
-            <button
-              onClick={function () {
-                setListName('cohort42')
-              }}
-            >
-              Cohort 42
-            </button>
+            <button onClick={() => setListName('cohort42')}>Cohort 42</button>
           </li>
           <li>
-            <button
-              onClick={function () {
-                setListName('cohort-21')
-              }}
-            >
-              Cohort 21
-            </button>
+            <button onClick={() => setListName('cohort-21')}>Cohort 21</button>
           </li>
           <li>
-            <button
-              onClick={function () {
-                setListName('illustriousvoyage')
-              }}
-            >
+            <button onClick={() => setListName('illustriousvoyage')}>
               illustriousvoyage
             </button>
           </li>
