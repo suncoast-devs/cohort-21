@@ -7,7 +7,7 @@ import logo from './images/sdg-logo.png'
 //                |  props.id      props.listName
 //                |  |             |
 //                v  v             v
-function TodoItem({ id, complete, listName, reloadAfterChange }) {
+function TodoItem({ id, complete, listName, reloadAfterChange, text }) {
   async function toggleCompleteStatus() {
     console.log('Clicked!')
 
@@ -28,11 +28,8 @@ function TodoItem({ id, complete, listName, reloadAfterChange }) {
   }
 
   return (
-    <li
-      onClick={toggleCompleteStatus}
-      className={props.complete ? 'completed' : ''}
-    >
-      {props.text}
+    <li onClick={toggleCompleteStatus} className={complete ? 'completed' : ''}>
+      {text}
     </li>
   )
 }
