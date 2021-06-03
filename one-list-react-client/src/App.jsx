@@ -5,19 +5,23 @@ import logo from './images/sdg-logo.png'
 export function App() {
   const [todoItems, setTodoItems] = useState([])
 
-  useEffect(async function () {
-    const response = await axios.get(
-      'https://one-list-api.herokuapp.com/items?access_token=cohort42'
-    )
+  useEffect(function () {
+    async function loadTheItems() {
+      const response = await axios.get(
+        'https://one-list-api.herokuapp.com/items?access_token=cohort42'
+      )
 
-    if (response.status === 200) {
-      console.log(response.data)
+      if (response.status === 200) {
+        console.log(response.data)
 
-      // response.data is an array of objects, JUST like I was setup for.
-      //
-      // "My todo items are the ones that came back from the API"
-      setTodoItems(response.data)
+        // response.data is an array of objects, JUST like I was setup for.
+        //
+        // "My todo items are the ones that came back from the API"
+        setTodoItems(response.data)
+      }
     }
+
+    loadTheItems()
   }, [])
 
   return (
