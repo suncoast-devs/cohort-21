@@ -31,12 +31,24 @@ export function App() {
     [listName]
   )
 
-  function handleCreateNewTodoItem(event) {
+  async function handleCreateNewTodoItem(event) {
     // Please don't do your normal behavior
     // which would be to submit the form and reload the page
     event.preventDefault()
 
     console.log(`Creating a new todo with ${newTodoText}!`)
+    const response = await axios.post(
+      `https://one-list-api.herokuapp.com/items?access_token=${listName}`,
+      {
+        item: {
+          text: newTodoText,
+        },
+      }
+    )
+
+    if (response.status === 201) {
+      console.log(response.data)
+    }
   }
 
   console.log(`We are looking at list ${listName}`)
