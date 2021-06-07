@@ -13,7 +13,7 @@ function TodoItemPage() {
     created_at: undefined,
     updated_at: undefined,
   })
-  const params = useParams()
+  const { id } = useParams() // { id: 42 }        id variable = 42
   const history = useHistory()
 
   useEffect(
@@ -21,7 +21,7 @@ function TodoItemPage() {
       // Load the one item who's id is params.id
       async function loadOneItem() {
         const response = await axios.get(
-          `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort42`
+          `https://one-list-api.herokuapp.com/items/${id}?access_token=cohort42`
         )
 
         if (response.status === 200) {
@@ -31,12 +31,12 @@ function TodoItemPage() {
 
       loadOneItem()
     },
-    [params.id]
+    [id]
   )
 
   async function deleteTodoItem() {
     const response = await axios.delete(
-      `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort42`
+      `https://one-list-api.herokuapp.com/items/${id}?access_token=cohort42`
     )
 
     if (response.status === 204) {
