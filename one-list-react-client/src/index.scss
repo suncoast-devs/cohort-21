@@ -67,12 +67,12 @@ ul {
     justify-content: space-between;
 
     margin: 0.7em;
-
-    &.completed {
-      text-decoration: line-through;
-      opacity: 0.5;
-    }
   }
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 ul,
