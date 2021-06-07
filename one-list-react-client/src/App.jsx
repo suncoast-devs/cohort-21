@@ -1,7 +1,13 @@
 import React from 'react'
 import logo from './images/sdg-logo.png'
 import { TodoList } from './components/TodoList'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, useParams } from 'react-router'
+
+function TodoItemPage() {
+  const params = useParams()
+
+  return <p>This would be the details of item {params.id}!</p>
+}
 
 export function App() {
   return (
@@ -13,6 +19,9 @@ export function App() {
         <Switch>
           <Route exact path="/">
             <TodoList />
+          </Route>
+          <Route path="/items/:id">
+            <TodoItemPage />
           </Route>
           <Route path="*">
             <p>Oooops, I don't know about that URL</p>
