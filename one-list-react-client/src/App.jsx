@@ -16,20 +16,23 @@ function TodoItemPage() {
   const params = useParams()
   const history = useHistory()
 
-  useEffect(function () {
-    // Load the one item who's id is params.id
-    async function loadOneItem() {
-      const response = await axios.get(
-        `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort42`
-      )
+  useEffect(
+    function () {
+      // Load the one item who's id is params.id
+      async function loadOneItem() {
+        const response = await axios.get(
+          `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort42`
+        )
 
-      if (response.status === 200) {
-        setTodoItem(response.data)
+        if (response.status === 200) {
+          setTodoItem(response.data)
+        }
       }
-    }
 
-    loadOneItem()
-  }, [])
+      loadOneItem()
+    },
+    [params.id]
+  )
 
   async function deleteTodoItem() {
     const response = await axios.delete(
