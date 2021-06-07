@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 import { TodoList } from './components/TodoList'
-import { Route, Switch, useParams } from 'react-router'
+import { Route, Switch, useHistory, useParams } from 'react-router'
 import axios from 'axios'
 
 function TodoItemPage() {
@@ -13,6 +13,7 @@ function TodoItemPage() {
     updated_at: undefined,
   })
   const params = useParams()
+  const history = useHistory()
 
   useEffect(function () {
     // Load the one item who's id is params.id
@@ -29,12 +30,21 @@ function TodoItemPage() {
     loadOneItem()
   }, [])
 
+  async function deleteTodoItem() {
+    await axios.delete(
+      `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort42`
+    )
+
+    // Redirect the user back to the home page!
+    history.push('/')
+  }
+
   return (
     <div>
       <p className={todoItem.complete ? 'completed' : ''}>{todoItem.text}</p>
       <p>Created: {todoItem.created_at}</p>
       <p>Updated: {todoItem.updated_at}</p>
-      <button>Delete</button>
+      <button onClick={deleteTodoItem}>Delete</button>
     </div>
   )
 }
