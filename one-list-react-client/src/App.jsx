@@ -3,6 +3,7 @@ import logo from './images/sdg-logo.png'
 import { TodoList } from './components/TodoList'
 import { Route, Switch, useHistory, useParams } from 'react-router'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function TodoItemPage() {
   const [todoItem, setTodoItem] = useState({
@@ -43,6 +44,7 @@ function TodoItemPage() {
 
   return (
     <div>
+      <Link to="/">Go Home</Link>
       <p className={todoItem.complete ? 'completed' : ''}>{todoItem.text}</p>
       <p>Created: {todoItem.created_at}</p>
       <p>Updated: {todoItem.updated_at}</p>

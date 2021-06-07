@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 //                destructuring from whatever the first argument is (e.g. what we used to call props)
 //                |
@@ -29,6 +30,7 @@ export function TodoItem({ id, complete, listName, reloadAfterChange, text }) {
   return (
     <li onClick={toggleCompleteStatus} className={complete ? 'completed' : ''}>
       {text}
+      <Link to={`/items/${id}`}>(details)</Link>
     </li>
   )
 }
