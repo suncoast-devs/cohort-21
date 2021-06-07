@@ -31,12 +31,14 @@ function TodoItemPage() {
   }, [])
 
   async function deleteTodoItem() {
-    await axios.delete(
+    const response = await axios.delete(
       `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort42`
     )
 
-    // Redirect the user back to the home page!
-    history.push('/')
+    if (response.status === 204) {
+      // Redirect the user back to the home page!
+      history.push('/')
+    }
   }
 
   return (
