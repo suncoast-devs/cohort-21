@@ -11,23 +11,24 @@ export function Person() {
         possimus veniam.
       </p>
 
-      <dl>
-        <dt>Hair Color</dt>
-        <dd>Blonde</dd>
-        <dt>Eye Color</dt>
-        <dd>Blue</dd>
-        <dt>Birth Year</dt>
-        <dd>19 BBY</dd>
+      <dl className="person-traits">
+        <dt className="trait">Hair Color</dt>
+        <dd className="value">Blonde</dd>
+        <dt className="trait">Eye Color</dt>
+        <dd className="value">Blue</dd>
+        <dd className="value">Green</dd>
+        <dt className="trait">Birth Year</dt>
+        <dd className="value">19 BBY</dd>
       </dl>
 
-      <ul>
-        <li>
+      <ul className="film-list">
+        <li className="film">
           <Link to="/films/1">Episode IV: A New Hope</Link>
         </li>
-        <li>
+        <li className="film">
           <Link to="/films/1">Episode VII: The Force Awakens</Link>
         </li>
-        <li>
+        <li className="film">
           <Link to="/films/1">Episode V: Empire Strikes Back</Link>
         </li>
       </ul>

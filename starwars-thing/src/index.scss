@@ -9,4 +9,102 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  background-color: #111;
+  color: white;
+}
+
+a {
+  &:link,
+  &:visited {
+    color: #00d1df;
+    text-decoration: none;
+  }
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .main {
+    flex-grow: 1;
+  }
+}
+
+.container {
+  max-width: 40rem;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.header .title {
+  a {
+    display: block;
+    height: 180px;
+    background: url('./images/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+  }
+}
+
+.header,
+.footer {
+  background-color: #333;
+  padding: 1rem;
+}
+
+.film-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+
+  .film {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
+
+.people-list {
+  columns: 4;
+}
+
+.crawl {
+  color: #e2be2f;
+  font-weight: 900;
+  font-size: 1.4rem;
+  width: 18rem;
+  margin: auto;
+  text-align: justify;
+  transform: perspective(9cm) rotateX(30deg) scale(0.75);
+}
+
+.person-traits {
+  display: grid;
+  grid-template-columns: 6rem auto;
+
+  .trait {
+    font-weight: 600;
+    grid-column: 1;
+  }
+  .value {
+    margin-left: 0;
+    grid-column: 2;
+  }
 }
