@@ -1,37 +1,21 @@
-import React from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { Film, Home, Layout, Person } from './components'
 
 export function App() {
   return (
-    <>
-      <header>
-        <h1>Welcome to my SPA</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Go Home</Link>
-            </li>
-            <li>
-              <Link to="/1">Page 1</Link>
-            </li>
-            <li>
-              <Link to="/2">Page 2</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <Layout>
       <Switch>
         <Route exact path="/">
-          Home
+          <Home />
         </Route>
-        <Route exact path="/1">
-          Page 1
+        <Route exact path="/people/:id">
+          <Person />
         </Route>
-        <Route exact path="/2">
-          Page 2
+        <Route exact path="/films/:id">
+          <Film />
         </Route>
         <Route path="*">Not Found</Route>
       </Switch>
-    </>
+    </Layout>
   )
 }
