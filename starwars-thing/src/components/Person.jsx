@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { getIdFromURL } from './getIdFromURL'
 
 export function Person() {
+  const [films, setFilms] = useState([])
   const [loading, setLoading] = useState(true)
   const [person, setPerson] = useState({
     name: '',
@@ -30,6 +32,16 @@ export function Person() {
       if (response.status === 200) {
         const json = await response.json()
         setPerson(json)
+
+        const filmURLS = json.films
+        const promises = filmURLS.map(async filmURL => {
+          const response = await fetch(filmURL)
+
+          return response.json()
+        })
+        const filmData = await Promise.all(promises)
+        setFilms(filmData)
+
         setLoading(false)
       }
     }
@@ -57,15 +69,11 @@ export function Person() {
       </dl>
 
       <ul className="film-list">
-        <li className="film">
-          <Link to="/films/1">Episode IV: A New Hope</Link>
-        </li>
-        <li className="film">
-          <Link to="/films/1">Episode VII: The Force Awakens</Link>
-        </li>
-        <li className="film">
-          <Link to="/films/1">Episode V: Empire Strikes Back</Link>
-        </li>
+        {films.map(film => (
+          <li key={getIdFromURL(film.url)} className="film">
+            <Link to={`/films/${getIdFromURL(film.url)}`}>{film.title}</Link>
+          </li>
+        ))}
       </ul>
     </>
   )

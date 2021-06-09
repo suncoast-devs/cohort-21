@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
-function getIdFromURL(url) {
-  const parts = url.split('/')
-
-  return parts[parts.length - 2]
-}
+import { getIdFromURL } from './getIdFromURL'
 
 export function Home() {
   const [films, setFilms] = useState([])

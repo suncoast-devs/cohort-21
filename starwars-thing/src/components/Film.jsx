@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { getIdFromURL } from './getIdFromURL'
 
 export function Film() {
   const [film, setFilm] = useState({
@@ -18,6 +19,7 @@ export function Film() {
     edited: '',
     url: '',
   })
+  const [characters, setCharacters] = useState([])
   const params = useParams()
 
   useEffect(function () {
@@ -28,6 +30,16 @@ export function Film() {
       if (response.status === 200) {
         const json = await response.json()
         setFilm(json)
+
+        const characterURLs = json.characters
+        const promises = characterURLs.map(async characterURL => {
+          const response = await fetch(characterURL)
+
+          return response.json()
+        })
+        const characterData = await Promise.all(promises)
+
+        setCharacters(characterData)
       }
     }
 
@@ -43,15 +55,13 @@ export function Film() {
       <div className="crawl">{film.opening_crawl}</div>
 
       <ul className="people-list">
-        <li>
-          <Link to="/people/1">Hans Solo</Link>
-        </li>
-        <li>
-          <Link to="/people/1">Yoda</Link>
-        </li>
-        <li>
-          <Link to="/people/1">Boba Fett</Link>
-        </li>
+        {characters.map(character => (
+          <li key={getIdFromURL(character.url)}>
+            <Link to={`/people/${getIdFromURL(character.url)}`}>
+              {character.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     </>
   )
