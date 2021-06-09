@@ -1,12 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import exampleFilms from './exampleFilms.json'
 
 export function Home() {
   const [films, setFilms] = useState([])
 
   useEffect(function () {
-    // Load from the API
+    async function loadFilms() {
+      // Actually load from the API
+      const response = await fetch('https://swapi.dev/api/films/')
+
+      // If we got a successful api, then grab the json
+      if (response.status === 200) {
+        const json = await response.json()
+
+        setFilms(json.results)
+      }
+    }
+
+    loadFilms()
   }, [])
 
   return (
