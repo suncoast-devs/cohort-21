@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import exampleFilms from './exampleFilms.json'
 
 export function Home() {
+  const [films, setFilms] = useState(exampleFilms.results)
   return (
     <>
       <p>
@@ -12,15 +15,11 @@ export function Home() {
       <div>
         <h3>Featured Films</h3>
         <ul className="film-list">
-          <li className="film">
-            <Link to="/films/1">Episode IV: A New Hope</Link>
-          </li>
-          <li className="film">
-            <Link to="/films/1">Episode VII: The Force Awakens</Link>
-          </li>
-          <li className="film">
-            <Link to="/films/1">Episode V: Empire Strikes Back</Link>
-          </li>
+          {films.map(film => (
+            <li className="film">
+              <Link to="/films/1">{film.title}</Link>
+            </li>
+          ))}
         </ul>
         <h3>Featured Characters</h3>
         <ul className="people-list">
