@@ -1,6 +1,25 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Person() {
+  const [person, setPerson] = useState({
+    name: '',
+    height: '',
+    mass: '',
+    hair_color: '',
+    skin_color: '',
+    eye_color: '',
+    birth_year: '',
+    gender: '',
+    homeworld: '',
+    films: [],
+    species: [],
+    vehicles: [],
+    starships: [],
+    created: '',
+    edited: '',
+    url: '',
+  })
   return (
     <>
       <h2>Hans Solo</h2>
