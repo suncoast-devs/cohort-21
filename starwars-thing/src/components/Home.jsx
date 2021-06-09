@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import examplePeople from './examplePeople.json'
 
 export function Home() {
   const [films, setFilms] = useState([])
+  const [people, setPeople] = useState(examplePeople.results)
 
   useEffect(function () {
     async function loadFilms() {
@@ -39,42 +41,11 @@ export function Home() {
         </ul>
         <h3>Featured Characters</h3>
         <ul className="people-list">
-          <li className="person">
-            <Link to="/people/1">Hans Solo</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Yoda</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Boba Fett</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Hans Solo</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Yoda</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Boba Fett</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Hans Solo</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Yoda</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Boba Fett</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Hans Solo</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Yoda</Link>
-          </li>
-          <li className="person">
-            <Link to="/people/1">Boba Fett</Link>
-          </li>
+          {people.map(person => (
+            <li key={person.url} className="person">
+              <Link to="/people/1">{person.name}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>
