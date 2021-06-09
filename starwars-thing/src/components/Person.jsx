@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 export function Person() {
   const [person, setPerson] = useState({
@@ -20,24 +20,33 @@ export function Person() {
     edited: '',
     url: '',
   })
+  const params = useParams()
+
+  useEffect(function () {
+    async function loadPerson() {
+      const response = await fetch(`https://swapi.dev/api/people/${params.id}/`)
+
+      if (response.status === 200) {
+        const json = await response.json()
+        setPerson(json)
+      }
+    }
+
+    loadPerson()
+  }, [])
+
   return (
     <>
-      <h2>Hans Solo</h2>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia ea
-        officiis odit, eius magni ratione blanditiis ipsam iste accusantium
-        asperiores quae repellat quidem at laborum reprehenderit eligendi saepe
-        possimus veniam.
-      </p>
+      <h2>{person.name}</h2>
+      <p></p>
 
       <dl className="person-traits">
         <dt className="trait">Hair Color</dt>
-        <dd className="value">Blonde</dd>
+        <dd className="value">{person.hair_color}</dd>
         <dt className="trait">Eye Color</dt>
-        <dd className="value">Blue</dd>
-        <dd className="value">Green</dd>
+        <dd className="value">{person.eye_color}</dd>
         <dt className="trait">Birth Year</dt>
-        <dd className="value">19 BBY</dd>
+        <dd className="value">{person.birth_year}</dd>
       </dl>
 
       <ul className="film-list">

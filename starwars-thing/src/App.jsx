@@ -8,6 +8,7 @@ export function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        {/*                /people/412 */}
         <Route exact path="/people/:id">
           <Person />
         </Route>
