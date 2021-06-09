@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+function getIdFromURL(url) {
+  const parts = url.split('/')
+
+  return parts[parts.length - 2]
+}
+
 export function Home() {
   const [films, setFilms] = useState([])
   const [people, setPeople] = useState([])
@@ -46,16 +52,18 @@ export function Home() {
         <h3>Featured Films</h3>
         <ul className="film-list">
           {films.map(film => (
-            <li key={film.url} className="film">
-              <Link to="/films/1">{film.title}</Link>
+            <li key={getIdFromURL(film.url)} className="film">
+              <Link to={`/films/${getIdFromURL(film.url)}`}>{film.title}</Link>
             </li>
           ))}
         </ul>
         <h3>Featured Characters</h3>
         <ul className="people-list">
           {people.map(person => (
-            <li key={person.url} className="person">
-              <Link to="/people/1">{person.name}</Link>
+            <li key={getIdFromURL(person.url)} className="person">
+              <Link to={`/people/${getIdFromURL(person.url)}`}>
+                {person.name}
+              </Link>
             </li>
           ))}
         </ul>
