@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getIdFromURL } from './getIdFromURL'
@@ -32,14 +33,12 @@ export function Film() {
         setFilm(json)
 
         const characterURLs = json.characters
-        const promises = characterURLs.map(async characterURL => {
-          const response = await fetch(characterURL)
+        const promises = characterURLs.map(async characterURL =>
+          axios.get(characterURL)
+        )
+        const characterResponses = await Promise.all(promises)
 
-          return response.json()
-        })
-        const characterData = await Promise.all(promises)
-
-        setCharacters(characterData)
+        setCharacters(characterResponses.map(response => response.data))
       }
     }
 
