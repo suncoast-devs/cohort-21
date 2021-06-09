@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import examplePeople from './examplePeople.json'
 
 export function Home() {
   const [films, setFilms] = useState([])
-  const [people, setPeople] = useState(examplePeople.results)
+  const [people, setPeople] = useState([])
 
   useEffect(function () {
     async function loadFilms() {
@@ -19,7 +18,20 @@ export function Home() {
       }
     }
 
+    async function loadPeople() {
+      // Actually load from the API
+      const response = await fetch('https://swapi.dev/api/people/')
+
+      // If we got a successful api, then grab the json
+      if (response.status === 200) {
+        const json = await response.json()
+
+        setPeople(json.results)
+      }
+    }
+
     loadFilms()
+    loadPeople()
   }, [])
 
   return (
