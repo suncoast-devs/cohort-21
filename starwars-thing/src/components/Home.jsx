@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import exampleFilms from './exampleFilms.json'
 
 export function Home() {
-  const [films, setFilms] = useState(exampleFilms.results)
+  const [films, setFilms] = useState([])
+
+  useEffect(function () {
+    // Load from the API
+  }, [])
+
   return (
     <>
       <p>
