@@ -11,6 +11,7 @@ export function App() {
         <Route exact path="/people/:id">
           <Person />
         </Route>
+        {/*                /films/4 */}
         <Route exact path="/films/:id">
           <Film />
         </Route>

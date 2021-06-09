@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 export function Film() {
   const [film, setFilm] = useState({
@@ -18,6 +18,21 @@ export function Film() {
     edited: '',
     url: '',
   })
+  const params = useParams()
+
+  useEffect(function () {
+    // Load data here
+    async function fetchFilm() {
+      const response = await fetch(`https://swapi.dev/api/films/${params.id}/`)
+
+      if (response.status === 200) {
+        const json = await response.json()
+        setFilm(json)
+      }
+    }
+
+    fetchFilm()
+  }, [])
 
   return (
     <>
