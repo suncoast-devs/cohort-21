@@ -32,7 +32,7 @@ export function Home() {
         <h3>Featured Films</h3>
         <ul className="film-list">
           {films.map(film => (
-            <li className="film">
+            <li key={film.url} className="film">
               <Link to="/films/1">{film.title}</Link>
             </li>
           ))}
