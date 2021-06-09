@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 export function Person() {
+  const [loading, setLoading] = useState(true)
   const [person, setPerson] = useState({
     name: '',
     height: '',
@@ -29,11 +30,17 @@ export function Person() {
       if (response.status === 200) {
         const json = await response.json()
         setPerson(json)
+        setLoading(false)
       }
     }
 
     loadPerson()
   }, [])
+
+  // Guard clause, IF we are loading only return a LOADING h2, nothing below
+  if (loading) {
+    return <h2>Loading...</h2>
+  }
 
   return (
     <>
