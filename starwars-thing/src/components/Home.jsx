@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import { getIdFromURL } from './getIdFromURL'
 
 export function Home() {
-  // const [people, setPeople] = useState([])
-
   const {
     isLoading: filmsAreLoading,
     error: filmError,
@@ -22,24 +20,17 @@ export function Home() {
     fetch('https://swapi.dev/api/people/').then(res => res.json())
   )
 
-  // useEffect(function () {
-  //   async function loadPeople() {
-  //     // Actually load from the API
-  //     const response = await fetch('https://swapi.dev/api/people/')
-
-  //     // If we got a successful api, then grab the json
-  //     if (response.status === 200) {
-  //       const json = await response.json()
-
-  //       setPeople(json.results)
-  //     }
-  //   }
-
-  //   loadPeople()
-  // }, [])
-
   if (filmsAreLoading || peopleAreLoading) {
     return <p>Loading...</p>
+  }
+
+  if (peopleError || filmError) {
+    return (
+      <ul>
+        <li>{peopleError.message}</li>
+        <li>{filmError.message}</li>
+      </ul>
+    )
   }
 
   return (
