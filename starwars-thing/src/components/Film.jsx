@@ -1,49 +1,31 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
 import { getIdFromURL } from './getIdFromURL'
 
 export function Film() {
-  const [film, setFilm] = useState({
-    title: '',
-    episode_id: 0,
-    opening_crawl: '',
-    director: '',
-    producer: '',
-    release_date: '',
-    characters: [],
-    planets: [],
-    starships: [],
-    vehicles: [],
-    species: [],
-    created: '',
-    edited: '',
-    url: '',
-  })
-  const [characters, setCharacters] = useState([])
   const params = useParams()
+  const { isLoading, data: useQueryData } = useQuery(['film', params.id], () =>
+    axios(`https://swapi.dev/api/films/${params.id}/`)
+  )
 
-  useEffect(function () {
-    // Load data here
-    async function fetchFilm() {
-      const response = await fetch(`https://swapi.dev/api/films/${params.id}/`)
+  // TODO: Come back and figure out how to use useQuery to load all the extra characters
+  //       We lost that Promise.all work when we trashed useEffect...
+  //
+  // const [characters, setCharacters] = useState([])
 
-      if (response.status === 200) {
-        const json = await response.json()
-        setFilm(json)
+  if (isLoading) {
+    // Show NOTHING if we are loading... (just as an example)
+    return <></>
+    // return null
+  }
 
-        const characterURLs = json.characters
-        const promises = characterURLs.map(async characterURL =>
-          axios.get(characterURL)
-        )
-        const characterResponses = await Promise.all(promises)
-
-        setCharacters(characterResponses.map(response => response.data))
-      }
-    }
-
-    fetchFilm()
-  }, [])
+  // Ugh,
+  //
+  // `useQueryData` is from the name in useQuery
+  // the second `data` is from the name in Axios
+  const film = useQueryData.data
 
   return (
     <>
@@ -53,7 +35,8 @@ export function Film() {
 
       <div className="crawl">{film.opening_crawl}</div>
 
-      <ul className="people-list">
+      {/* TODO: Uncomment this when we figure out how to load the characters again */}
+      {/* <ul className="people-list">
         {characters.map(character => (
           <li key={getIdFromURL(character.url)}>
             <Link to={`/people/${getIdFromURL(character.url)}`}>
@@ -61,7 +44,7 @@ export function Film() {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   )
 }
