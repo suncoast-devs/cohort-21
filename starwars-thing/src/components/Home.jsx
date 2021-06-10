@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
@@ -8,17 +9,13 @@ export function Home() {
     isLoading: filmsAreLoading,
     error: filmError,
     data: filmData,
-  } = useQuery('filmData', () =>
-    fetch('https://swapi.dev/api/films/').then(res => res.json())
-  )
+  } = useQuery('filmData', () => axios.get('https://swapi.dev/api/films/'))
 
   const {
     isLoading: peopleAreLoading,
     error: peopleError,
     data: peopleData,
-  } = useQuery('peopleData', () =>
-    fetch('https://swapi.dev/api/people/').then(res => res.json())
-  )
+  } = useQuery('peopleData', () => axios.get('https://swapi.dev/api/people/'))
 
   if (filmsAreLoading || peopleAreLoading) {
     return <p>Loading...</p>
@@ -33,6 +30,13 @@ export function Home() {
     )
   }
 
+  /* peopleData is a react-query thing */
+  /* data is an axios thing */
+  /* results is the name of the key in the API data */
+  /* Yuck, can we just rename this people?!? */
+  const people = peopleData.data.results
+  const films = filmData.data.results
+
   return (
     <>
       <p>
@@ -44,7 +48,7 @@ export function Home() {
       <div>
         <h3>Featured Films</h3>
         <ul className="film-list">
-          {filmData.results.map(film => (
+          {films.map(film => (
             <li key={getIdFromURL(film.url)} className="film">
               <Link to={`/films/${getIdFromURL(film.url)}`}>{film.title}</Link>
             </li>
@@ -52,7 +56,7 @@ export function Home() {
         </ul>
         <h3>Featured Characters</h3>
         <ul className="people-list">
-          {peopleData.results.map(person => (
+          {people.map(person => (
             <li key={getIdFromURL(person.url)} className="person">
               <Link to={`/people/${getIdFromURL(person.url)}`}>
                 {person.name}
