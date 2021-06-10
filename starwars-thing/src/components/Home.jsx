@@ -4,43 +4,41 @@ import { Link } from 'react-router-dom'
 import { getIdFromURL } from './getIdFromURL'
 
 export function Home() {
-  // const [films, setFilms] = useState([])
-  const [people, setPeople] = useState([])
+  // const [people, setPeople] = useState([])
 
-  const { isLoading, error, data } = useQuery('filmData', () =>
+  const {
+    isLoading: filmsAreLoading,
+    error: filmError,
+    data: filmData,
+  } = useQuery('filmData', () =>
     fetch('https://swapi.dev/api/films/').then(res => res.json())
   )
 
-  useEffect(function () {
-    // async function loadFilms() {
-    //   // Actually load from the API
-    //   const response = await fetch('https://swapi.dev/api/films/')
+  const {
+    isLoading: peopleAreLoading,
+    error: peopleError,
+    data: peopleData,
+  } = useQuery('peopleData', () =>
+    fetch('https://swapi.dev/api/people/').then(res => res.json())
+  )
 
-    //   // If we got a successful api, then grab the json
-    //   if (response.status === 200) {
-    //     const json = await response.json()
+  // useEffect(function () {
+  //   async function loadPeople() {
+  //     // Actually load from the API
+  //     const response = await fetch('https://swapi.dev/api/people/')
 
-    //     setFilms(json.results)
-    //   }
-    // }
+  //     // If we got a successful api, then grab the json
+  //     if (response.status === 200) {
+  //       const json = await response.json()
 
-    async function loadPeople() {
-      // Actually load from the API
-      const response = await fetch('https://swapi.dev/api/people/')
+  //       setPeople(json.results)
+  //     }
+  //   }
 
-      // If we got a successful api, then grab the json
-      if (response.status === 200) {
-        const json = await response.json()
+  //   loadPeople()
+  // }, [])
 
-        setPeople(json.results)
-      }
-    }
-
-    // loadFilms()
-    loadPeople()
-  }, [])
-
-  if (isLoading) {
+  if (filmsAreLoading || peopleAreLoading) {
     return <p>Loading...</p>
   }
 
@@ -55,7 +53,7 @@ export function Home() {
       <div>
         <h3>Featured Films</h3>
         <ul className="film-list">
-          {data.results.map(film => (
+          {filmData.results.map(film => (
             <li key={getIdFromURL(film.url)} className="film">
               <Link to={`/films/${getIdFromURL(film.url)}`}>{film.title}</Link>
             </li>
@@ -63,7 +61,7 @@ export function Home() {
         </ul>
         <h3>Featured Characters</h3>
         <ul className="people-list">
-          {people.map(person => (
+          {peopleData.results.map(person => (
             <li key={getIdFromURL(person.url)} className="person">
               <Link to={`/people/${getIdFromURL(person.url)}`}>
                 {person.name}
