@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { Link, useParams } from 'react-router-dom'
-import { getIdFromURL } from './getIdFromURL'
+import { useParams } from 'react-router-dom'
 
 export function Person() {
   const params = useParams()
