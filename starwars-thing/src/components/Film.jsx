@@ -14,9 +14,7 @@ export function Film() {
   // const [characters, setCharacters] = useState([])
 
   if (isLoading) {
-    // Show NOTHING if we are loading... (just as an example)
-    return <></>
-    // return null
+    return <p>Loading...</p>
   }
 
   // Ugh,
