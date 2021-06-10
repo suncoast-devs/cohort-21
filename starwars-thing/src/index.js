@@ -1,12 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router } from 'react-router-dom'
-import './index.scss'
+
 import { App } from './App'
 
+import './index.scss'
+
+const queryClient = new QueryClient()
+
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <QueryClientProvider client={queryClient}>
+    <Router>
+      <App />
+    </Router>
+  </QueryClientProvider>,
   document.getElementById('root')
 )
