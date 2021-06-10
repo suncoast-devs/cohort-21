@@ -1,23 +1,28 @@
 import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import { getIdFromURL } from './getIdFromURL'
 
 export function Home() {
-  const [films, setFilms] = useState([])
+  // const [films, setFilms] = useState([])
   const [people, setPeople] = useState([])
 
+  const { isLoading, error, data } = useQuery('filmData', () =>
+    fetch('https://swapi.dev/api/films/').then(res => res.json())
+  )
+
   useEffect(function () {
-    async function loadFilms() {
-      // Actually load from the API
-      const response = await fetch('https://swapi.dev/api/films/')
+    // async function loadFilms() {
+    //   // Actually load from the API
+    //   const response = await fetch('https://swapi.dev/api/films/')
 
-      // If we got a successful api, then grab the json
-      if (response.status === 200) {
-        const json = await response.json()
+    //   // If we got a successful api, then grab the json
+    //   if (response.status === 200) {
+    //     const json = await response.json()
 
-        setFilms(json.results)
-      }
-    }
+    //     setFilms(json.results)
+    //   }
+    // }
 
     async function loadPeople() {
       // Actually load from the API
@@ -31,9 +36,13 @@ export function Home() {
       }
     }
 
-    loadFilms()
+    // loadFilms()
     loadPeople()
   }, [])
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
   return (
     <>
@@ -46,7 +55,7 @@ export function Home() {
       <div>
         <h3>Featured Films</h3>
         <ul className="film-list">
-          {films.map(film => (
+          {data.results.map(film => (
             <li key={getIdFromURL(film.url)} className="film">
               <Link to={`/films/${getIdFromURL(film.url)}`}>{film.title}</Link>
             </li>
