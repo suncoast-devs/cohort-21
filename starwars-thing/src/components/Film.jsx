@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { Link, useParams } from 'react-router-dom'
-import { getIdFromURL } from './getIdFromURL'
+import { useParams } from 'react-router-dom'
 
 export function Film() {
   const params = useParams()
@@ -16,9 +14,7 @@ export function Film() {
   // const [characters, setCharacters] = useState([])
 
   if (isLoading) {
-    // Show NOTHING if we are loading... (just as an example)
-    return <></>
-    // return null
+    return <p>Loading...</p>
   }
 
   // Ugh,

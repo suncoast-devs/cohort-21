@@ -1,55 +1,27 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { getIdFromURL } from './getIdFromURL'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
 
 export function Person() {
-  const [films, setFilms] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [person, setPerson] = useState({
-    name: '',
-    height: '',
-    mass: '',
-    hair_color: '',
-    skin_color: '',
-    eye_color: '',
-    birth_year: '',
-    gender: '',
-    homeworld: '',
-    films: [],
-    species: [],
-    vehicles: [],
-    starships: [],
-    created: '',
-    edited: '',
-    url: '',
-  })
   const params = useParams()
+  // TODO: Come back to this when we understand react query more
+  // const [films, setFilms] = useState([])
 
-  useEffect(function () {
-    async function loadPerson() {
-      const response = await fetch(`https://swapi.dev/api/people/${params.id}/`)
-
-      if (response.status === 200) {
-        const json = await response.json()
-        setPerson(json)
-
-        const filmURLS = json.films
-        const promises = filmURLS.map(async filmURL => axios.get(filmURL))
-        const filmResponses = await Promise.all(promises)
-        setFilms(filmResponses.map(response => response.data))
-
-        setLoading(false)
-      }
-    }
-
-    loadPerson()
-  }, [])
+  const { isLoading, data: useQueryData } = useQuery(
+    ['person', params.id],
+    () => axios(`https://swapi.dev/api/people/${params.id}/`)
+  )
 
   // Guard clause, IF we are loading only return a LOADING h2, nothing below
-  if (loading) {
+  if (isLoading) {
     return <h2>Loading...</h2>
   }
+
+  // Ugh,
+  //
+  // `useQueryData` is from the name in useQuery
+  // the second `data` is from the name in Axios
+  const person = useQueryData.data
 
   return (
     <>
@@ -65,13 +37,14 @@ export function Person() {
         <dd className="value">{person.birth_year}</dd>
       </dl>
 
-      <ul className="film-list">
+      {/* TODO: Uncomment this when loading all the films works */}
+      {/* <ul className="film-list">
         {films.map(film => (
           <li key={getIdFromURL(film.url)} className="film">
             <Link to={`/films/${getIdFromURL(film.url)}`}>{film.title}</Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   )
 }
