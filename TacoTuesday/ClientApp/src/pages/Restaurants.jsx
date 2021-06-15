@@ -5,20 +5,29 @@ import map from '../images/map.png'
 
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
+  const [filterText, setFilterText] = useState('')
 
-  useEffect(function () {
-    async function loadRestaurants() {
-      const response = await fetch('/api/Restaurants')
+  useEffect(
+    function () {
+      async function loadRestaurants() {
+        const url =
+          filterText.length === 0
+            ? '/api/Restaurants'
+            : `/api/Restaurants?filter=${filterText}`
 
-      if (response.ok) {
-        const json = await response.json()
+        const response = await fetch(url)
 
-        setRestaurants(json)
+        if (response.ok) {
+          const json = await response.json()
+
+          setRestaurants(json)
+        }
       }
-    }
 
-    loadRestaurants()
-  }, [])
+      loadRestaurants()
+    },
+    [filterText]
+  )
 
   return (
     <>
@@ -42,7 +51,14 @@ export function Restaurants() {
           <img src={tacoTuesday} alt="Taco Tuesday" />
         </h1>
         <form className="search">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            value={filterText}
+            onChange={function (event) {
+              setFilterText(event.target.value)
+            }}
+          />
         </form>
 
         <section className="map">
@@ -51,7 +67,7 @@ export function Restaurants() {
 
         <ul className="results">
           {restaurants.map((restaurant) => (
-            <li>
+            <li key={restaurant.id}>
               <h2>{restaurant.name}</h2>
               <p>
                 <span
