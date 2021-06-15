@@ -13,6 +13,7 @@ export function NewRestaurant() {
       telephone: '',
     }
   )
+  const [errorMessage, setErrorMessage] = useState('')
   const history = useHistory()
 
   function handleStringFieldChange(event) {
@@ -35,6 +36,12 @@ export function NewRestaurant() {
       history.push('/')
     } else {
       // Show errors!
+      const json = await response.json()
+
+      const errors = json.errors
+      const messages = Object.values(errors)
+      const errorMessageSentence = messages.join(' ')
+      setErrorMessage(errorMessageSentence)
     }
   }
 
@@ -63,6 +70,7 @@ export function NewRestaurant() {
           <h2>Add a Restaurant</h2>
         </nav>
         <form onSubmit={handleFormSubmit}>
+          {errorMessage ? <p>{errorMessage}</p> : null}
           <p className="form-input">
             <label htmlFor="name">Name</label>
             <input
