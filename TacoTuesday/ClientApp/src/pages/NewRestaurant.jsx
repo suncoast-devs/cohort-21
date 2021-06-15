@@ -1,16 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import avatar from '../images/avatar.png'
+import { Restaurants } from './Restaurants'
 
 export function NewRestaurant() {
+  const [newRestaurant, setNewRestaurant] = useState(
+    // Shape of what we are SENDING to the API
+    {
+      name: '',
+      description: '',
+      address: '',
+      telephone: '',
+    }
+  )
+  const history = useHistory()
+
+  function handleStringFieldChange(event) {
+    const value = event.target.value
+    const fieldName = event.target.name
+
+    setNewRestaurant({ ...newRestaurant, [fieldName]: value })
+  }
+
+  async function handleFormSubmit(event) {
+    event.preventDefault()
+
+    const response = await fetch('/api/Restaurants', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newRestaurant),
+    })
+
+    if (response.ok) {
+      history.push('/')
+    } else {
+      // Show errors!
+    }
+  }
+
   return (
     <>
       <header>
         <ul>
           <li>
             <nav>
-              <a href="#">
+              <Link to="/new">
                 <i className="fa fa-plus"></i> Restaurant
-              </a>
+              </Link>
               <p>Welcome back, Steve!</p>
             </nav>
           </li>
@@ -21,30 +57,48 @@ export function NewRestaurant() {
       </header>
       <main className="page">
         <nav>
-          <a href="/">
+          <Link to="/">
             <i className="fa fa-home"></i>
-          </a>
+          </Link>
           <h2>Add a Restaurant</h2>
         </nav>
-        <form action="#">
+        <form onSubmit={handleFormSubmit}>
           <p className="form-input">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" />
+            <input
+              type="text"
+              name="name"
+              value={newRestaurant.name}
+              onChange={handleStringFieldChange}
+            />
           </p>
           <p className="form-input">
             <label htmlFor="description">Description</label>
-            <textarea name="description"></textarea>
+            <textarea
+              name="description"
+              value={newRestaurant.description}
+              onChange={handleStringFieldChange}
+            ></textarea>
             <span className="note">
               Enter a brief description of the restaurant.
             </span>
           </p>
           <p className="form-input">
             <label htmlFor="name">Address</label>
-            <textarea name="address"></textarea>
+            <textarea
+              name="address"
+              value={newRestaurant.address}
+              onChange={handleStringFieldChange}
+            ></textarea>
           </p>
           <p className="form-input">
             <label htmlFor="name">Telephone</label>
-            <input type="tel" name="telephone" />
+            <input
+              type="tel"
+              name="telephone"
+              value={newRestaurant.telephone}
+              onChange={handleStringFieldChange}
+            />
           </p>
           <p className="form-input">
             <label htmlFor="picture">Picture</label>

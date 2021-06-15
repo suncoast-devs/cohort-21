@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import avatar from '../images/avatar.png'
 import tacoTuesday from '../images/taco-tuesday.svg'
 import map from '../images/map.png'
+import { Link } from 'react-router-dom'
 
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
@@ -35,9 +36,9 @@ export function Restaurants() {
         <ul>
           <li>
             <nav>
-              <a href="#">
+              <Link to="/new">
                 <i className="fa fa-plus"></i> Restaurant
-              </a>
+              </Link>
               <p>Welcome back, Steve!</p>
             </nav>
           </li>
