@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-eslint": "10.1.0",
+    "date-fns": "^2.22.1",
     "jquery": "^3.4.1",
     "merge": "^2.1.0",
     "oidc-client": "^1.10.1",
