@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import format from 'date-fns/format'
 
-import avatar from '../images/avatar.png'
-
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function Restaurant() {
@@ -25,7 +23,42 @@ export function Restaurant() {
     restaurantId: id,
   })
 
-  async function fetchRestaurant() {
+  // This code here is the right way to use useEffect
+  // with a loading function that exists OUTSIDE of
+  // useEffect so that function can be reused.. Ugh. Complex.
+
+  // const fetchRestaurantCallback = useCallback(
+  //   async function () {
+  //     const response = await fetch(`/api/Restaurants/${id}`)
+
+  //     if (response.ok) {
+  //       const apiData = await response.json()
+
+  //       setRestaurant(apiData)
+  //     }
+  //   },
+  //   [id]
+  // )
+
+  // useEffect(() => {
+  //   fetchRestaurantCallback()
+  // }, [id, fetchRestaurantCallback])
+
+  useEffect(() => {
+    async function fetchRestaurant() {
+      const response = await fetch(`/api/Restaurants/${id}`)
+
+      if (response.ok) {
+        const apiData = await response.json()
+
+        setRestaurant(apiData)
+      }
+    }
+
+    fetchRestaurant()
+  }, [id])
+
+  async function reloadRestaurant() {
     const response = await fetch(`/api/Restaurants/${id}`)
 
     if (response.ok) {
@@ -34,10 +67,6 @@ export function Restaurant() {
       setRestaurant(apiData)
     }
   }
-
-  useEffect(() => {
-    fetchRestaurant()
-  }, [id])
 
   function handleNewReviewTextFieldChange(event) {
     const name = event.target.name
@@ -69,7 +98,7 @@ export function Restaurant() {
       })
 
       // Reload the restaurant (including the reviews!)
-      fetchRestaurant()
+      reloadRestaurant()
     }
   }
 
@@ -100,7 +129,7 @@ export function Restaurant() {
 
       <ul className="reviews">
         {restaurant.reviews.map((review) => (
-          <li>
+          <li key={review.id}>
             <div className="author">
               Gavin said: <em>{review.summary}</em>
             </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import avatar from '../images/avatar.png'
 
 export function NewRestaurant() {
   const [newRestaurant, setNewRestaurant] = useState(
