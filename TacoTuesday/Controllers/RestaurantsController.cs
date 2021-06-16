@@ -37,13 +37,19 @@ namespace TacoTuesday.Controllers
             // them by row id and return them as a JSON array.
             if (filter == null)
             {
-                return await _context.Restaurants.OrderBy(row => row.Id).ToListAsync();
+                return await _context.Restaurants.
+                                        OrderBy(row => row.Id).
+                                        Include(restaurant => restaurant.Reviews).
+                                        ToListAsync();
             }
             else
             {
                 // Use the filter!
-                return await _context.Restaurants.Where(restaurant => restaurant.Name.ToLower().Contains(filter.ToLower())
-                                                                    || restaurant.Address.ToLower().Contains(filter.ToLower())).ToListAsync();
+                return await _context.Restaurants.
+                                         Where(restaurant => restaurant.Name.ToLower().Contains(filter.ToLower())
+                                                          || restaurant.Address.ToLower().Contains(filter.ToLower())).
+                                         Include(restaurant => restaurant.Reviews).
+                                         ToListAsync();
             }
         }
 
@@ -57,7 +63,11 @@ namespace TacoTuesday.Controllers
         public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
         {
             // Find the restaurant in the database using `FindAsync` to look it up by id
-            var restaurant = await _context.Restaurants.FindAsync(id);
+            // var restaurant = await _context.Restaurants.FindAsync(id);
+            var restaurant = await _context.Restaurants.
+                                                Include(restaurant => restaurant.Reviews).
+                                                Where(restaurant => restaurant.Id == id).
+                                                FirstOrDefaultAsync();
 
             // If we didn't find anything, we receive a `null` in return
             if (restaurant == null)
