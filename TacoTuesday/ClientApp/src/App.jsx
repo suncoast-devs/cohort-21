@@ -7,6 +7,7 @@ import './custom.scss'
 import { Restaurant } from './pages/Restaurant'
 import avatar from './images/avatar.png'
 import { SignUp } from './pages/SignUp'
+import { SignIn } from './pages/SignIn'
 
 export function App() {
   return (
@@ -39,6 +40,9 @@ export function App() {
         </Route>
         <Route exact path="/signup">
           <SignUp />
+        </Route>
+        <Route exact path="/signin">
+          <SignIn />
         </Route>
       </Switch>
       <footer>
