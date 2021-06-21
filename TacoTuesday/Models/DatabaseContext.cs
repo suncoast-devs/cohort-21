@@ -16,6 +16,8 @@ namespace TacoTuesday.Models
         // Add database tables here
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        // Tell the context about the User collection/table
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
