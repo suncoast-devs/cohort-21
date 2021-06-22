@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { recordAuthentication } from '../auth'
 
 export function SignIn() {
   const [errorMessage, setErrorMessage] = useState()
@@ -31,8 +32,7 @@ export function SignIn() {
     if (apiResponse.status === 400) {
       setErrorMessage(Object.values(apiResponse.errors).join(' '))
     } else {
-      // TODO, record the login
-      // recordAuthentication(apiResponse)
+      recordAuthentication(apiResponse)
       window.location.assign('/')
     }
   }

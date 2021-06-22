@@ -20,6 +20,7 @@ export function App() {
                 <i className="fa fa-plus"></i> Restaurant
               </Link>
               <Link to="/signup">Sign Up</Link>
+              <Link to="/signin">Sign In</Link>
               <p>Welcome back, Steve!</p>
             </nav>
           </li>
