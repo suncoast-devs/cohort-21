@@ -8,25 +8,55 @@ import { Restaurant } from './pages/Restaurant'
 import avatar from './images/avatar.png'
 import { SignUp } from './pages/SignUp'
 import { SignIn } from './pages/SignIn'
+import { getUser, isLoggedIn, logout } from './auth'
 
 export function App() {
+  const user = getUser()
+
+  function handleLogout() {
+    logout()
+
+    window.location.assign('/')
+  }
+
+  const signUpButton = isLoggedIn() ? null : <Link to="/signup">Sign Up</Link>
+  const signInButton = isLoggedIn() ? null : <Link to="/signin">Sign In</Link>
+
   return (
     <>
       <header>
         <ul>
           <li>
             <nav>
-              <Link to="/new">
-                <i className="fa fa-plus"></i> Restaurant
-              </Link>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/signin">Sign In</Link>
-              <p>Welcome back, Steve!</p>
+              {isLoggedIn() ? (
+                <Link to="/new">
+                  <i className="fa fa-plus"></i> Restaurant
+                </Link>
+              ) : null}
+
+              {signUpButton}
+
+              {signInButton}
+
+              {isLoggedIn() ? (
+                <span className="link" onClick={handleLogout}>
+                  Sign out
+                </span>
+              ) : null}
+
+              {isLoggedIn() ? <p>Welcome back, {user.fullName}!</p> : null}
             </nav>
           </li>
-          <li className="avatar">
-            <img src={avatar} alt="Steve's Avatar" height="64" width="64" />
-          </li>
+          {isLoggedIn() ? (
+            <li className="avatar">
+              <img
+                src={avatar}
+                alt={`${user.fullName}'s Avatar`}
+                height="64"
+                width="64"
+              />
+            </li>
+          ) : null}
         </ul>
       </header>
       <Switch>
