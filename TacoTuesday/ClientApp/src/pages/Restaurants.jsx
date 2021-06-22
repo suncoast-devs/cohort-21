@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import tacoTuesday from '../images/taco-tuesday.svg'
 import map from '../images/map.png'
-import { Link } from 'react-router-dom'
+import { SingleRestaurant } from '../components/SingleRestaurant'
 
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
@@ -51,22 +51,7 @@ export function Restaurants() {
 
       <ul className="results">
         {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>
-            <h2>
-              <Link to={`/restaurants/${restaurant.id}`}>
-                {restaurant.name}
-              </Link>
-            </h2>
-            <p>
-              <span
-                className="stars"
-                style={{ '--rating': 4.7 }}
-                aria-label="Star rating of this location is 4.7 out of 5."
-              ></span>
-              ({restaurant.reviews.length})
-            </p>
-            <address>{restaurant.address}</address>
-          </li>
+          <SingleRestaurant key={restaurant.id} restaurant={restaurant} />
         ))}
       </ul>
     </main>
