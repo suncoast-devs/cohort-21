@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import format from 'date-fns/format'
-import { isLoggedIn } from '../auth'
+import { authHeader, isLoggedIn } from '../auth'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
@@ -9,6 +9,7 @@ export function Restaurant() {
   const params = useParams()
   const id = params.id
 
+  const [errorMessage, setErrorMessage] = useState('')
   const [restaurant, setRestaurant] = useState({
     name: '',
     description: '',
@@ -85,21 +86,25 @@ export function Restaurant() {
 
     const response = await fetch(`/api/Reviews`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(newReview),
     })
 
-    if (response.ok) {
-      // Clear the form
-      setNewReview({
-        ...newReview,
-        body: '',
-        summary: '',
-        stars: 0,
-      })
+    if (response.status === 401) {
+      setErrorMessage('Not Authorized')
+    } else {
+      if (response.ok) {
+        // Clear the form
+        setNewReview({
+          ...newReview,
+          body: '',
+          summary: '',
+          stars: 0,
+        })
 
-      // Reload the restaurant (including the reviews!)
-      reloadRestaurant()
+        // Reload the restaurant (including the reviews!)
+        reloadRestaurant()
+      }
     }
   }
 
@@ -151,6 +156,7 @@ export function Restaurant() {
 
       {isLoggedIn() ? (
         <form onSubmit={handleNewReviewSubmit}>
+          <p>{errorMessage}</p>
           <h3>Enter your own review</h3>
           <p className="form-input">
             <label htmlFor="summary">Summary</label>
