@@ -13,5 +13,8 @@ namespace TacoTuesday.Models
 
         // The User ID of the user that created this review
         public int UserId { get; set; }
+
+        // The related User object
+        public User User { get; set; }
     }
 }

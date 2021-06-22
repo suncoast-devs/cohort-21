@@ -67,7 +67,10 @@ namespace TacoTuesday.Controllers
             // Find the restaurant in the database using `FindAsync` to look it up by id
             // var restaurant = await _context.Restaurants.FindAsync(id);
             var restaurant = await _context.Restaurants.
+                                                // This brings in the related reviews
                                                 Include(restaurant => restaurant.Reviews).
+                                                // For those reviews, this brings in the related user
+                                                ThenInclude(review => review.User).
                                                 Where(restaurant => restaurant.Id == id).
                                                 FirstOrDefaultAsync();
 
