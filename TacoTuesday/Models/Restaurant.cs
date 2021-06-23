@@ -20,6 +20,10 @@ namespace TacoTuesday.Models
         // The User ID of the user that created this restaurant
         public int UserId { get; set; }
 
+        // Lat/Lng for address information
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
         // Restaurant HAS MANY Reviews
         public List<Review> Reviews { get; set; }
     }
