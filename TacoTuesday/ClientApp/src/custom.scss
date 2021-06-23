@@ -412,3 +412,7 @@ label[for]:hover {
   label:nth-of-type(5) {
   color: darkorange;
 }
+
+.mapboxgl-popup {
+  z-index: 1;
+}
