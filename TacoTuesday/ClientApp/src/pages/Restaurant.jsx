@@ -16,6 +16,7 @@ export function Restaurant() {
     description: '',
     address: '',
     telephone: '',
+    photoURL: '',
     reviews: [],
   })
 
@@ -122,6 +123,10 @@ export function Restaurant() {
       </p>
       <address>{restaurant.address}</address>
       <hr />
+
+      {restaurant.photoURL ? (
+        <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
+      ) : null}
 
       {/* Conditionally show some content IF the length of the reviews array is more than 0
             e.g. there are some reviews to show */}

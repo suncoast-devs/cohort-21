@@ -24,6 +24,9 @@ namespace TacoTuesday.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
+        // Picture of the restaurant (https://cloudinary.com/my-images/525423523523452345.png)
+        public string PhotoURL { get; set; }
+
         // Restaurant HAS MANY Reviews
         public List<Review> Reviews { get; set; }
     }
