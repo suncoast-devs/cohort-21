@@ -47,13 +47,12 @@ export function App() {
               {isLoggedIn() ? <p>Welcome back, {user.fullName}!</p> : null}
             </nav>
           </li>
-          {isLoggedIn() ? (
+          {isLoggedIn() && user.photoURL ? (
             <li className="avatar">
               <img
-                src={avatar}
+                src={user.photoURL}
                 alt={`${user.fullName}'s Avatar`}
                 height="64"
-                width="64"
               />
             </li>
           ) : null}

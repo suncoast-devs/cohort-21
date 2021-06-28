@@ -67,8 +67,8 @@ header .avatar {
   margin: 0 1rem -50%;
   background-image: url('./images/square.svg');
   height: 64px;
-  width: 64px;
   padding: 0.4rem;
+  object-fit: contain;
 }
 
 header nav {
