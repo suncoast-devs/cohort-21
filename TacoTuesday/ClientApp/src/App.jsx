@@ -5,7 +5,6 @@ import { NewRestaurant } from './pages/NewRestaurant'
 
 import './custom.scss'
 import { Restaurant } from './pages/Restaurant'
-import avatar from './images/avatar.png'
 import { SignUp } from './pages/SignUp'
 import { SignIn } from './pages/SignIn'
 import { getUser, isLoggedIn, logout } from './auth'

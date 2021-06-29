@@ -147,7 +147,7 @@ export function SignUp() {
 
         {newUser.photoURL ? (
           <p>
-            <img alt="User Photo" width={200} src={newUser.photoURL} />
+            <img alt="User" width={200} src={newUser.photoURL} />
           </p>
         ) : null}
 

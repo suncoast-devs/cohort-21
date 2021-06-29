@@ -60,7 +60,6 @@ export function NewRestaurant() {
   async function onDropFile(acceptedFiles) {
     // Do something with the files
     const fileToUpload = acceptedFiles[0]
-    console.log(fileToUpload)
 
     setIsUploading(true)
 
@@ -163,11 +162,7 @@ export function NewRestaurant() {
 
         {newRestaurant.photoURL ? (
           <p>
-            <img
-              alt="Restaurant Photo"
-              width={200}
-              src={newRestaurant.photoURL}
-            />
+            <img alt="Restaurant" width={200} src={newRestaurant.photoURL} />
           </p>
         ) : null}
 

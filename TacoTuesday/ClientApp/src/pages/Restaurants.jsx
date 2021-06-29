@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 import tacoTuesday from '../images/taco-tuesday.svg'
-import map from '../images/map.png'
 import { SingleRestaurant } from '../components/SingleRestaurant'
 
 export function Restaurants() {
@@ -36,7 +35,6 @@ export function Restaurants() {
     [filterText]
   )
 
-  console.log(process.env.REACT_APP_MAPBOX_TOKEN)
   return (
     <main className="home">
       <h1>

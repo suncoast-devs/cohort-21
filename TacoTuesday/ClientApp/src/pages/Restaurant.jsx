@@ -160,7 +160,7 @@ export function Restaurant() {
       <hr />
 
       {restaurant.photoURL ? (
-        <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
+        <img alt="Restaurant" width={200} src={restaurant.photoURL} />
       ) : null}
 
       {isLoggedIn() && restaurant.userId === getUserId() ? (

@@ -186,7 +186,7 @@ export function EditRestaurant() {
 
         {restaurant.photoURL ? (
           <p>
-            <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
+            <img alt="Restaurant" width={200} src={restaurant.photoURL} />
           </p>
         ) : null}
 
