@@ -9,6 +9,7 @@ import avatar from './images/avatar.png'
 import { SignUp } from './pages/SignUp'
 import { SignIn } from './pages/SignIn'
 import { getUser, isLoggedIn, logout } from './auth'
+import { EditRestaurant } from './pages/EditRestaurant'
 
 export function App() {
   const user = getUser()
@@ -67,6 +68,9 @@ export function App() {
         </Route>
         <Route exact path="/restaurants/:id">
           <Restaurant />
+        </Route>
+        <Route exact path="/restaurants/:id/edit">
+          <EditRestaurant />
         </Route>
         <Route exact path="/signup">
           <SignUp />

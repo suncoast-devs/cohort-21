@@ -163,7 +163,15 @@ export function Restaurant() {
         <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
       ) : null}
 
-      {restaurant.userId === getUserId() ? (
+      {isLoggedIn() && restaurant.userId === getUserId() ? (
+        <p>
+          <Link className="button" to={`/restaurants/${id}/edit`}>
+            Edit
+          </Link>
+        </p>
+      ) : null}
+
+      {isLoggedIn() && restaurant.userId === getUserId() ? (
         <p>
           <button onClick={handleDelete}>Delete</button>
         </p>

@@ -101,12 +101,28 @@ namespace TacoTuesday.Controllers
         // new values for the record.
         //
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutRestaurant(int id, Restaurant restaurant)
         {
             // If the ID in the URL does not match the ID in the supplied request body, return a bad request
             if (id != restaurant.Id)
             {
                 return BadRequest();
+            }
+
+            // Find this restaurant by looking for the specific id
+            var restaurantBelongsToUser = await _context.Restaurants.AnyAsync(restaurant => restaurant.Id == id && restaurant.UserId == GetCurrentUserId());
+            if (!restaurantBelongsToUser)
+            {
+                // Make a custom error response
+                var response = new
+                {
+                    status = 401,
+                    errors = new List<string>() { "Not Authorized" }
+                };
+
+                // Return our error with the custom response
+                return Unauthorized(response);
             }
 
             // Tell the database to consider everything in restaurant to be _updated_ values. When
