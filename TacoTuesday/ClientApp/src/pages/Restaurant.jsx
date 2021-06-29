@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import format from 'date-fns/format'
-import { authHeader, isLoggedIn } from '../auth'
+import { authHeader, getUserId, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
@@ -9,6 +9,8 @@ const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 export function Restaurant() {
   const params = useParams()
   const id = params.id
+
+  const history = useHistory()
 
   const [errorMessage, setErrorMessage] = useState('')
   const [restaurant, setRestaurant] = useState({
@@ -110,6 +112,21 @@ export function Restaurant() {
     }
   }
 
+  async function handleDelete(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Restaurants/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.ok) {
+      history.push('/')
+    } else {
+      // Some kind of error message display
+    }
+  }
+
   return (
     <main className="page">
       <nav>
@@ -126,6 +143,12 @@ export function Restaurant() {
 
       {restaurant.photoURL ? (
         <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
+      ) : null}
+
+      {restaurant.userId === getUserId() ? (
+        <p>
+          <button onClick={handleDelete}>Delete</button>
+        </p>
       ) : null}
 
       {/* Conditionally show some content IF the length of the reviews array is more than 0
